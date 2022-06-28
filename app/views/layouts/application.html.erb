@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- CORE CSS -->
+    <%= stylesheet_link_tag '/assets/plugins/bootstrap/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- WEB FONTS -->
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- REVOLUTION SLIDER -->
+    <%= stylesheet_link_tag 'plugins/slider.revolution/css/extralayers.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'plugins/slider.revolution/css/settings.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- PAGE LEVEL SCRIPTS -->
+    <%= stylesheet_link_tag 'header-1', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'color_scheme/blue.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- THEME CSS -->
+    <%= stylesheet_link_tag 'layout', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'essentials', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body class="smoothscroll enable-animation">
+    <div id="wrapper">
+      <%= render 'home/header' %>
+      <%= yield %>
+      <%= render 'home/footer' %>
+
+      <!-- JAVASCRIPT FILES -->
+      <%= javascript_include_tag 'scripts', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag '/plugins/slider.revolution/js/jquery.themepunch.tools.min.js', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'plugins/slider.revolution/js/jquery.themepunch.revolution.min.js', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'scripts', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag '/js/contact.js', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag '/plugins/jquery/jquery-3.3.1.min.js', 'data-turbolinks-track': 'reload' %>
+    </div> 
+  </body>
+</html>
