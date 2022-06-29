@@ -26,10 +26,16 @@
   </head>
 
   <body class="smoothscroll enable-animation">
+  
     <div id="wrapper">
+      
       <%= render 'home/header' %>
       <%= render 'home/navbar_for_backoffice'%>
+      <%#need for devise%>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
+      
       <%= yield %>
       <%= render 'home/footer' %>
 
