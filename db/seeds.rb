@@ -6,6 +6,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+User.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
+
+
+User.create!([{
+  email: "mathieu.houde@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "patrick.thibault@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "francis.patry-jessop@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "david.amyot@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "marie-eve.goupil@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "francois.boivin@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "timothy.wever@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "kiril.kleinerman@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "felicia.hartono@codeboxx.biz",
+  password: "juicejuice"
+},
+{
+  email: "eileen.ai@codeboxx.biz",
+  password: "juicejuice"
+}])
+
+
 Employee.destroy_all
 Employee.connection.execute('ALTER TABLE employees AUTO_INCREMENT = 1')
 
