@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_06_29_183206) do
 
+
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
