@@ -7,7 +7,7 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
 set :rbenv_roles, :all # default value
 
-set :application, "Sevada Rostomian"
+set :application, "Sevada_Rostomian"
 set :repo_url, "git@github.com:Yepvajia/Rocket_Elevators_Information_System.git"
 
 # Default branch is :master
