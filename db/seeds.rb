@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Employee.destroy_all
-Employee.connection.execute('ALTER TABLE Employees AUTO_INCREMENT = 1')
+Employee.connection.execute('ALTER TABLE employees AUTO_INCREMENT = 1')
 
 
 Employee.create!([{
