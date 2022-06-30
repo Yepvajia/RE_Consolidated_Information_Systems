@@ -1,9 +1,10 @@
+<div class = "container">
 <p id="notice"><%= notice %></p>
-
+<div class = "container">
 <h1>Employees</h1>
-
-<table>
-  <thead>
+</div>
+<table class = "container table table-hover table-bordered table-striped">
+  <thead class ="thead-dark">
     <tr>
       <th>First name</th>
       <th>Last name</th>
@@ -32,4 +33,7 @@
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<%= link_to 'New Employee', new_employee_path,class:"btn btn-secondary" %>
+<br>
+<hr>
+</div>
