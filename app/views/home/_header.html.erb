@@ -10,7 +10,7 @@
 
             <!-- Logo -->
             <a class="logo float-left scrollTo" href="#top">
-                <img src="r_assets/R3.png" alt="" />
+                <%= image_tag "R3.png"%>
             </a>
 
             <!-- 
@@ -30,43 +30,23 @@
                     -->
                     <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
                         <li class="active"><!-- HOME -->
-                            <a id="home-nav" class="scrollTo" href="#top">
-                                HOME
-                            </a>
+                            <%= link_to 'HOME', root_path%>
                         </li>
                         <li><!-- SERVICES -->
-                            <a id="services-nav" href="#services">
-                                SERVICES
-                            </a>
+                            <%= link_to 'SERVICES', root_path%>
                         </li>
                         <li><!-- PORTFOLIO -->
-                            <a id="portfolio-nav" href="#portfolio">
-                                PORTFOLIO
-                            </a>
+                            <%= link_to 'PORTFOLIO', root_path%>
                         </li>
                         <li><!-- NEWS -->
-                            <a id="news-nav" href="#news">
-                                NEWS
-                            </a>
+                            <%= link_to 'NEWS', root_path%>                
                         </li>
                         <li><!-- CLIENTS -->
-                            <a id="clients-nav" href="#clients">
-                                CLIENTS
-                            </a>
+                            <%= link_to 'CLIENTS', root_path%>                
                         </li>
-                        <!-- <li><!-- BLOG -->
-                            <!-- <a class="external" href="blog-default-aside-left.html"> -->
-                                <!-- BLOG -->
-                            <!-- </a> -->
-                        <!-- </li> -->
                         <li><!-- CONTACT -->
-                            <a id="contact-nav" href="#contact">
-                                CONTACT
-                            </a>
+                            <%= link_to 'CONTACT', root_path%>                
                         </li>
-                        <!-- CONTACT -->
-                            
-                        
                     </ul>
 
                 </nav>
