@@ -9,7 +9,7 @@ default: &default
   timeout: 5000
   database: roc_elv_db
   username: root
-  password: Avinash1
+  password: razakade123
   host: localhost
 
 development:
