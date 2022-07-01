@@ -12,4 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap.min
+ *= require layout
+ *= require essentials
+ *= require header-1
+ *= require blue
+ *= require owl.carousel
+ *= require owl.theme
  */
