@@ -1,0 +1,73 @@
+<%= form_with(model: quote, local: true) do |form| %>
+  <% if quote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
+
+      <ul>
+      <% quote.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :building_type %>
+    <%= form.select(:building_type, ['Residential', 'Commercial', 'Corporate', 'Hybrid']) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.select(:price, ['Standard', 'Premium', 'Excelium']) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_apartments %>
+    <%= form.number_field :number_of_apartments %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_companies %>
+    <%= form.number_field :number_of_companies %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_corporations %>
+    <%= form.number_field :number_of_corporations %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_floors %>
+    <%= form.number_field :number_of_floors %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_basements %>
+    <%= form.number_field :number_of_basements %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_parking_spots %>
+    <%= form.number_field :number_of_parking_spots %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_elevators %>
+    <%= form.number_field :number_of_elevators %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maximum_occupancy %>
+    <%= form.number_field :maximum_occupancy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :business_hours %>
+    <%= form.number_field :business_hours %>
+  </div>
+
+  <div class="actions">
+    <br>
+    <%= form.submit class:"btn btn-secondary" %>
+  </div>
+<% end %>

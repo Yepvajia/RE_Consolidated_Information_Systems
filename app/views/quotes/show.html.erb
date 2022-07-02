@@ -1,0 +1,61 @@
+<div class="container jumbotron">
+  <p id="notice"><%= notice %></p>
+  
+  <p>
+    <strong>Building type:</strong>
+    <%= @quote.building_type %>
+  </p>
+  
+  <p>
+    <strong>Price:</strong>
+    <%= @quote.price %>
+  </p>
+  
+  <p>
+    <strong>Number of apartments:</strong>
+    <%= @quote.number_of_apartments %>
+  </p>
+  
+  <p>
+    <strong>Number of companies:</strong>
+    <%= @quote.number_of_companies %>
+  </p>
+  
+  <p>
+    <strong>Number of corporations:</strong>
+    <%= @quote.number_of_corporations %>
+  </p>
+  
+  <p>
+    <strong>Number of floors:</strong>
+    <%= @quote.number_of_floors %>
+  </p>
+  
+  <p>
+    <strong>Number of basements:</strong>
+    <%= @quote.number_of_basements %>
+  </p>
+  
+  <p>
+    <strong>Number of parking spots:</strong>
+    <%= @quote.number_of_parking_spots %>
+  </p>
+  
+  <p>
+    <strong>Number of elevators:</strong>
+    <%= @quote.number_of_elevators %>
+  </p>
+  
+  <p>
+    <strong>Maximum occupancy:</strong>
+    <%= @quote.maximum_occupancy %>
+  </p>
+  
+  <p>
+    <strong>Business hours:</strong>
+    <%= @quote.business_hours %>
+  </p>
+  
+  <%= link_to 'Edit', edit_quote_path(@quote) %> |
+  <%= link_to 'Back', quotes_path %>
+</div>
