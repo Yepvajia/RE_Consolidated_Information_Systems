@@ -1,0 +1,58 @@
+<div id="header" class="navbar-toggleable-md sticky header-md clearfix">
+    <!-- TOP NAV -->
+    <header id="topNav">
+        <div class="container">
+
+            <!-- Mobile Menu Button -->
+            <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Logo -->
+            <a class="logo float-left scrollTo" href="#top">
+                <%= image_tag "R3.png"%>
+            </a>
+
+            <!-- 
+                Top Nav 
+                
+                AVAILABLE CLASSES:
+                submenu-dark = dark sub menu
+            -->
+            <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+                <nav class="nav-main">
+
+                    <!-- 
+                        .nav-onepage
+                        Required for onepage navigation links
+                        
+                        Add .external for an external link!
+                    -->
+                    <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+                        <li class="active"><!-- HOME -->
+                            <%= link_to 'HOME', root_path%>
+                        </li>
+                        <li><!-- SERVICES -->
+                            <%= link_to 'SERVICES', root_path%>
+                        </li>
+                        <li><!-- PORTFOLIO -->
+                            <%= link_to 'PORTFOLIO', root_path%>
+                        </li>
+                        <li><!-- NEWS -->
+                            <%= link_to 'NEWS', root_path%>                
+                        </li>
+                        <li><!-- CLIENTS -->
+                            <%= link_to 'CLIENTS', root_path%>                
+                        </li>
+                        <li><!-- CONTACT -->
+                            <%= link_to 'CONTACT', root_path%>                
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+
+        </div>
+    </header>
+    <!-- /Top Nav -->
+</div>

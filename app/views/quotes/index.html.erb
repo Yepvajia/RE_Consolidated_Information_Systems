@@ -1,0 +1,53 @@
+<br>
+<br>
+<br>
+<p id="notice"><%= notice %></p>
+<div class = "container">
+  <h1>Quotes</h1>
+</div>
+
+<table class = "container table table-hover table-bordered table-striped">
+  <thead class ="thead-dark">
+    <tr>
+      <th>Building type</th>
+      <th>Price</th>
+      <th>Number of apartments</th>
+      <th>Number of companies</th>
+      <th>Number of corporations</th>
+      <th>Number of floors</th>
+      <th>Number of basements</th>
+      <th>Number of parking spots</th>
+      <th>Number of elevators</th>
+      <th>Maximum occupancy</th>
+      <th>Business hours</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quotes.each do |quote| %>
+      <tr>
+        <td><%= quote.building_type %></td>
+        <td><%= quote.price %></td>
+        <td><%= quote.number_of_apartments %></td>
+        <td><%= quote.number_of_companies %></td>
+        <td><%= quote.number_of_corporations %></td>
+        <td><%= quote.number_of_floors %></td>
+        <td><%= quote.number_of_basements %></td>
+        <td><%= quote.number_of_parking_spots %></td>
+        <td><%= quote.number_of_elevators %></td>
+        <td><%= quote.maximum_occupancy %></td>
+        <td><%= quote.business_hours %></td>
+        <td><%= link_to 'Show', quote %></td>
+        <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+        <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<div class = "container">
+  <%= link_to 'New Quote', new_quote_path, class:"btn btn-secondary" %>
+</div>
+<br>

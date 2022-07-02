@@ -4,65 +4,32 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
+    <!-- WEB FONTS : use %7C instead of | (pipe) -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Rocket Elevators</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <!-- CORE CSS -->
-    <%= stylesheet_link_tag '/assets/plugins/bootstrap/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <!-- WEB FONTS -->
-    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <!-- REVOLUTION SLIDER -->
-    <%= stylesheet_link_tag 'plugins/slider.revolution/css/extralayers.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'plugins/slider.revolution/css/settings.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <!-- PAGE LEVEL SCRIPTS -->
-    <%= stylesheet_link_tag 'header-1', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'color_scheme/blue.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <!-- THEME CSS -->
-    <%= stylesheet_link_tag 'layout', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'essentials', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      a:hover {
+        background-color: white;
+      }
+    </style>
   </head>
-  
   <body class="smoothscroll enable-animation">
-  
     <div id="wrapper">
-      
       <%#need for devise%>
-      <%= render 'home/navbar_for_backoffice'%>
-      
       <%= render 'home/header' %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
-      
       <%= yield %>
       <%= render 'home/footer' %>
-
-      <!-- JAVASCRIPT FILES -->
-      <%= javascript_include_tag 'scripts', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag '/plugins/slider.revolution/js/jquery.themepunch.tools.min.js', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'plugins/slider.revolution/js/jquery.themepunch.revolution.min.js', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'scripts', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag '/js/contact.js', 'data-turbolinks-track': 'reload' %>
-      <%= stylesheet_link_tag '/plugins/jquery/jquery-3.3.1.min.js', 'data-turbolinks-track': 'reload' %>
     </div> 
-  
-
+		<script>var plugin_path = 'app/assets/javascripts';</script>
     <!-- Optional JavaScript; choose one of the two! -->
-
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
+    <%# <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script> %>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

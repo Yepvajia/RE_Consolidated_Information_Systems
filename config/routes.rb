@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :quotes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
 Rails.application.routes.draw do
+  resources :quotes
   resources :employees
   devise_for :users
   root 'home#index'

@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_29_183206) do
+ActiveRecord::Schema.define(version: 2022_07_02_004554) do
 
-  create_table "Employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "title"
@@ -22,7 +22,24 @@ ActiveRecord::Schema.define(version: 2022_06_29_183206) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "building_type"
+    t.string "price"
+    t.integer "number_of_apartments"
+    t.integer "number_of_companies"
+    t.integer "number_of_corporations"
+    t.integer "number_of_floors"
+    t.integer "number_of_basements"
+    t.integer "number_of_parking_spots"
+    t.integer "number_of_elevators"
+    t.integer "maximum_occupancy"
+    t.integer "business_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "admin", default: 0
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
