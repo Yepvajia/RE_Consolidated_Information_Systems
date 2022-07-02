@@ -1,57 +1,60 @@
-<div id="header" class="navbar-toggleable-md sticky header-md clearfix">
+<div id="header" class="navbar-toggleable-md header-md clearfix">
     <!-- TOP NAV -->
     <header id="topNav">
         <div class="container">
-
             <!-- Mobile Menu Button -->
             <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-
             <!-- Logo -->
             <a class="logo float-left scrollTo" href="#top">
                 <%= image_tag "R3.png"%>
             </a>
-
-            <!-- 
-                Top Nav 
-                
-                AVAILABLE CLASSES:
-                submenu-dark = dark sub menu
-            -->
             <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
                 <nav class="nav-main">
-
-                    <!-- 
-                        .nav-onepage
-                        Required for onepage navigation links
-                        
-                        Add .external for an external link!
-                    -->
                     <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
                         <li class="active"><!-- HOME -->
-                            <%= link_to 'HOME', root_path%>
+                            <%= link_to 'HOME', root_path %>
                         </li>
                         <li><!-- SERVICES -->
-                            <%= link_to 'SERVICES', root_path%>
+                            <%=link_to 'SERVICES', root_path(anchor: 'services')%>
                         </li>
                         <li><!-- PORTFOLIO -->
-                            <%= link_to 'PORTFOLIO', root_path%>
+                            <%=link_to 'PORTFOLIO', root_path(anchor: 'portfolio')%>
                         </li>
                         <li><!-- NEWS -->
-                            <%= link_to 'NEWS', root_path%>                
+                            <%=link_to 'NEWS', root_path(anchor: 'news')%>
                         </li>
                         <li><!-- CLIENTS -->
-                            <%= link_to 'CLIENTS', root_path%>                
+                            <%=link_to 'CLIENTS', root_path(anchor: 'clients')%>
                         </li>
                         <li><!-- CONTACT -->
-                            <%= link_to 'CONTACT', root_path%>                
+                            <%=link_to 'CONTACT', root_path(anchor: 'contact')%>
                         </li>
+                        <%#logic to show and hide when a user has signed in%>
+                        <li class="nav-item">
+                            <%= link_to "EMPLOYEE LIST",employees_path, class:"nav-link"%>
+                        </li>
+                        <% if user_signed_in?%>
+                            <%# <li class="nav-item">
+                            <%= link_to"Add User",new_user_registration_path ,class:"nav-link"%> 
+                            <li class="nav-item">
+                                <%= link_to"EDIT PROFILE",edit_user_registration_path ,class:"nav-link"%>
+                            </li>
+                            <li class="nav-item">
+                                <%= button_to "SIGN OUT",destroy_user_session_path, method: :delete, class:"btn-link"%>
+                            </li>
+                        <%else%>
+                            <li class="nav-item">
+                                <%= link_to"SIGN UP",new_user_registration_path ,class:"nav-link"%>
+                            </li>
+                            <li class="nav-item text-light bg-primary">
+                                <%= link_to"SIGN IN",new_user_session_path ,class:"nav-link text-light"%>
+                            </li>
+                        <%end%>
                     </ul>
-
                 </nav>
             </div>
-
         </div>
     </header>
     <!-- /Top Nav -->
