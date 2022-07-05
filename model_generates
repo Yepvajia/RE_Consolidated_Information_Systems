@@ -11,9 +11,9 @@ rails generate model Building customer_id:integer address_id:integer name email 
 
 rails generate model BuildingDetail building_id:integer key value
 
-rails generate model Battery building_id:integer type status employee_id comm_date:date inspec_date:date certificate:integer information:text notes:text
+rails generate model Battery building_id:integer type status employee_id:integer comm_date:date inspec_date:date certificate:integer information:text notes:text
 
-rails generate model Column battery_id type floors:integer status information notes:text
+rails generate model Column battery_id:integer type floors:integer status information notes:text
  
 rails generate model Elevator column_id:integer serial_number model type status comm_date:date inspec_date:date certificate:integer information:text notes:text
 

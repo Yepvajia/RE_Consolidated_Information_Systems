@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  column_id: 1
+  serial_number: MyString
+  model: MyString
+  type: 
+  status: MyString
+  comm_date: 2022-07-05
+  inspec_date: 2022-07-05
+  certificate: 1
+  information: MyText
+  notes: MyText
+
+two:
+  column_id: 1
+  serial_number: MyString
+  model: MyString
+  type: 
+  status: MyString
+  comm_date: 2022-07-05
+  inspec_date: 2022-07-05
+  certificate: 1
+  information: MyText
+  notes: MyText
