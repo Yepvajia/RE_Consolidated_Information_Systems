@@ -6,9 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Faker::UniqueGenerator.clear # ONLY NEEDED ONCE AT THE TOP
+
 User.destroy_all
 User.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
-
 
 User.create!([{
   admin: 1,
@@ -61,10 +62,14 @@ User.create!([{
   password: "juicejuice"
 }])
 
+40.times do
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: "juicejuice")
+end
 
 Employee.destroy_all
 Employee.connection.execute('ALTER TABLE employees AUTO_INCREMENT = 1')
-
 
 Employee.create!([{
   first_name: "Mathieu",
@@ -136,3 +141,60 @@ Employee.create!([{
   email: "eileen.ai@codeboxx.biz",
   user_id: 10
 }])
+
+Address.destroy_all
+Address.connection.execute('ALTER TABLE addresses AUTO_INCREMENT = 1')
+
+40.times do |i|
+  Address.create!(
+    status: "juice"
+  )
+end
+
+Customer.destroy_all
+Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
+
+40.times do |i|
+  user = User.find(i+11)
+  Customer.create!(
+    user_id: i + 11,
+    creation_date: Faker::Date.between(from: 3.years.ago, to: Date.today),
+    company_name: Faker::Company.unique.name,
+    address_id: i + 1,
+    name: Faker::Name.unique.name,
+    phone: Faker::PhoneNumber.unique.cell_phone,
+    email: user.email,
+    description: Faker::Lorem.paragraph,
+    auth_name: Faker::Name.unique.name,
+    auth_phone: Faker::PhoneNumber.unique.cell_phone,
+    mangr_email: Faker::Internet.unique.email
+  )
+end
+
+Building.destroy_all
+Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
+
+40.times do |i|
+  customer = Customer.find(i+1)
+  Building.create!(
+    customer_id: i + 1,
+    address_id: i + 1,
+    name: customer.name,
+    email: customer.email,
+    phone: customer.phone,
+    tech_name: Faker::Name.unique.name,
+    tech_email: Faker::Internet.unique.email,
+    tech_phone: Faker::PhoneNumber.unique.cell_phone
+  )
+  # puts customer.address.status
+end
+
+# Lead.create!([{
+#   name: Faker::Name.unique.name,
+#   company_name: 
+#   email:
+#   phone:
+#   project_name:
+#   description:
+
+# }])
