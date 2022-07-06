@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
+require_relative "func"
 User.destroy_all
 User.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
 
@@ -139,59 +140,24 @@ Employee.create!([{
 
 
 
-# functions for data
-def buildingAndBatteryID
-  array = []
-  for i in 0..39 do 
-    array.append(i)
-  end
-  a = rand(40)
-  return array[a]
-end
-#elevator model outputs a model type
-def elevatorsModel
-  array = ["Standard","Premium","Excelium"]
-  a = rand(3)
-  return array[a]
-end
-# type outputs a elevator type
-def type
- array =["Residential","Commercial","Corporate"]
- a = rand(3)
- return array[a]
-end
 
-# status outputs a status 
-def status
-  array = ["Working_condition","needs_replacement","needs_to_be_inspected"]
-  a = rand(3)
-return array[a]
-end
-# employee id outputs a random number from 1 to 10 as thats the number on employee the company has
-def employeeId
-  array = []
-  for i in 0..9 do 
-    array.append(i)
-  end
-  a = rand(10)
-  return array[a]
-end
-# floors outputs a number from 1 to 80 taking 80 as an imaginary number of floors
-def floors
-  array = []
-  for i in 0..79 do 
-    array.append(i)
-  end
-  a = rand(80)
-  return array[a]
-end
+
+Building.destroy_all
+Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
+
+
+Building.create!([{
+  name: "juice"
+}])
+  
+
 
 BuildingDetail.destroy_all
-BuildingDetail.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
+BuildingDetail.connection.execute('ALTER TABLE building_details AUTO_INCREMENT = 1')
 
 33.times do
   BuildingDetail.create!(
-    building_id: buildingAndBatteryID(),
+    building_id: 1,
     key: Faker::Lorem.sentence(word_count: 1),
     value: Faker::Lorem.sentence(word_count: 1)
   )
@@ -199,16 +165,16 @@ BuildingDetail.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
 end
 
 Battery.destroy_all
-Battery.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
+Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
 40.times do
   Battery.create!(
-    building_id: buildingAndBatteryID(),
+    building_id: 1,
     #type: type(),
     status: status(),
     employee_id: employeeId(),
-    comm_date: Faker::Date.between(from: '2019-01-23', to: '2014-06-25'),
-    inspec_date: Faker::Date.between(from: '2019-01-23', to: '2014-06-25'),
+    comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
+    inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     certificate: Faker::Number.number(digits: 7),
     information: Faker::Lorem.sentence(word_count: 3),
     notes: Faker::Lorem.sentence(word_count: 5)
@@ -217,7 +183,7 @@ Battery.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
 end
 
 Column.destroy_all
-Column.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
+Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
 55.times do
   Column.create!(
@@ -232,20 +198,22 @@ Column.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
 end
 
 Elevator.destroy_all
-Elevator.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
+Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
 100.times do
   Elevator.create!(
+    column_id: 1,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     #type: type(),
     status: status(),
-    comm_date: Faker::Date.between(from: '2019-01-23', to: '2014-06-25'),
-    inspec_date: Faker::Date.between(from: '2019-01-23', to: '2014-06-25'),
+    comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
+    inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     certificate: Faker::Number.number(digits: 7),
     information: Faker::Lorem.sentence(word_count: 3),
     notes: Faker::Lorem.sentence(word_count: 5)
   )
   
 end
+
 
