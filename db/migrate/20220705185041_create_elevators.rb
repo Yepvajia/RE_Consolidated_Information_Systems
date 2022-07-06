@@ -4,7 +4,7 @@ class CreateElevators < ActiveRecord::Migration[5.2]
       t.integer :column_id
       t.string :serial_number
       t.string :model
-      t.string :type
+      t.string :building_type
       t.string :status
       t.date :comm_date
       t.date :inspec_date
