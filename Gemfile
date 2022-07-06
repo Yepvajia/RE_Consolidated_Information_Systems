@@ -10,6 +10,8 @@ gem 'faker'
 gem 'rails', '~> 5.2.7', '>= 5.2.7.1'
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
+# Use postgreSQL as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.11'
 # Use SCSS for stylesheets
