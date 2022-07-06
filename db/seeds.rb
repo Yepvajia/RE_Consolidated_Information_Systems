@@ -170,7 +170,7 @@ Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 40.times do
   Battery.create!(
     building_id: 1,
-    #type: type(),
+    building_type: type(),
     status: status(),
     employee_id: employeeId(),
     comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
@@ -188,7 +188,7 @@ Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 55.times do
   Column.create!(
     battery_id: buildingAndBatteryID(),
-    #type: type(),
+    building_type: type(),
     floors: floors(),
     status: status(),
     information: Faker::Lorem.sentence(word_count: 3),
@@ -202,10 +202,10 @@ Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
 100.times do
   Elevator.create!(
-    column_id: 1,
+    column_id: colID() ,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
-    #type: type(),
+    building_type: type(),
     status: status(),
     comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),

@@ -32,3 +32,8 @@ def floors
   a = rand(80)
   return a
 end
+# this function creates the random number between 1 to 55 as there are 55 col
+def colID
+  a = rand(55)
+  return a + 1
+end

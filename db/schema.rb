@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_05_185041) do
+ActiveRecord::Schema.define(version: 2022_07_06_170425) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "type"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
 
   create_table "batteries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "building_id"
-    t.string "type"
+    t.string "building_type"
     t.string "status"
     t.integer "employee_id"
     t.date "comm_date"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
 
   create_table "columns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "battery_id"
-    t.string "type"
+    t.string "building_type"
     t.integer "floors"
     t.string "status"
     t.string "information"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.integer "column_id"
     t.string "serial_number"
     t.string "model"
-    t.string "type"
+    t.string "building_type"
     t.string "status"
     t.date "comm_date"
     t.date "inspec_date"
