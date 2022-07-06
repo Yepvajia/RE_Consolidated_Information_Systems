@@ -5,14 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-<<<<<<< HEAD
-
-Faker::UniqueGenerator.clear # ONLY NEEDED ONCE AT THE TOP
-
-=======
 require "faker"
 require_relative "func"
->>>>>>> 1daa8feeb08d4de6c25731c6b10586032c1e62a6
+Faker::UniqueGenerator.clear # ONLY NEEDED ONCE AT THE TOP
+
 User.destroy_all
 User.connection.execute('ALTER TABLE users AUTO_INCREMENT = 1')
 
