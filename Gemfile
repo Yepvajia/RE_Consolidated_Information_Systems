@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.6'
+gem 'faker' # for fake data
 gem 'devise'# for devise (back office)
 gem 'rails_admin' # for rails admin backofficre
 gem 'faker'
