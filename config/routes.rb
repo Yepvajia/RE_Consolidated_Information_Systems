@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'home/commercial'
   get 'home/residential'
   get 'home/chart'
+  post '/create_lead' => 'home#create_lead'
 end
