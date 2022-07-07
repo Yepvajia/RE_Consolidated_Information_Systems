@@ -12,6 +12,7 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.integer :number_of_elevators
       t.integer :maximum_occupancy
       t.integer :business_hours
+      t.date :date, default: Date.today
 
       t.timestamps
     end
