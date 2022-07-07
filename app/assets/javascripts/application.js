@@ -13,10 +13,10 @@
 //= require jquery3
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap.min
 //= require jquery-3.3.1.min
 //= require owl.carousel
+//= require turbolinks
+//= require_tree .
 

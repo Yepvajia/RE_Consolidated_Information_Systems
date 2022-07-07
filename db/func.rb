@@ -30,7 +30,7 @@ end
 # floors outputs a number from 1 to 80 taking 80 as an imaginary number of floors
 def floors
   a = rand(80)
-  return a
+  return a + 1
 end
 # this function creates the random number between 1 to 55 as there are 55 col
 def colID
