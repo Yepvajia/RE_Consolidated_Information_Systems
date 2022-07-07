@@ -4,6 +4,13 @@ class HomeController < ApplicationController
     #   redirect_to rails_admin_path
     # end
   end
+  
+  def chart 
+    if current_user.admin != 1
+        redirect_to root_path
+    end
+  end
+
 
   def create_lead
 
