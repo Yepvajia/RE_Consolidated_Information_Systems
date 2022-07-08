@@ -4,14 +4,14 @@
 # & 
 #rails db:migrate to push the table to the database
 
-ware_house: &ware_house
-  adapter: postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  database: roc_elv_db_warehouse
-  username: 
-  password: 
-  host: localhost
+# ware_house: &ware_house
+#   adapter: postgresql
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+#   database: roc_elv_db_warehouse
+#   username: 
+#   password: 
+#   host: localhost
 
 mysql: &mysql
   adapter: mysql2
@@ -24,13 +24,13 @@ mysql: &mysql
 
 development:
   <<: *mysql
-  <<: *ware_house
+  # <<: *ware_house
 
 test:
   <<: *mysql
-  <<: *ware_house
+  # <<: *ware_house
 
 production:
   <<: *mysql
-  <<: *ware_house
+  # <<: *ware_house
 

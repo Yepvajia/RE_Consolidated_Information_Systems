@@ -3,7 +3,7 @@
 
 rails generate model Lead name company_name email phone project_name description:text department message:text file:binary date:date
 
-rails generate model Address type status enity num_street apt_suite city postal_code country notes:text
+rails generate model Address address_type status enity num_street apt_suite city postal_code country notes:text
 
 rails generate model Customer user_id:integer creation_date:date company_name address_id:integer name phone email description:text auth_name auth_phone mangr_email
 
@@ -11,11 +11,11 @@ rails generate model Building customer_id:integer address_id:integer name email 
 
 rails generate model BuildingDetail building_id:integer key value
 
-rails generate model Battery building_id:integer type status employee_id comm_date:date inspec_date:date certificate:integer information:text notes:text
+rails generate model Battery building_id:integer building_type status employee_id:integer comm_date:date inspec_date:date certificate:integer information:text notes:text
 
-rails generate model Column battery_id type floors:integer status information notes:text
+rails generate model Column battery_id:integer building_type floors:integer status information notes:text
  
-rails generate model Elevator column_id:integer serial_number model type status comm_date:date inspec_date:date certificate:integer information:text notes:text
+rails generate model Elevator column_id:integer serial_number model building_type status comm_date:date inspec_date:date certificate:integer information:text notes:text
 
 ### DO NOT USE UNLESS NEEDED!
 ## PROBABLY WONT BE NEEDED, BUT IN CASE THESE ARE, THEY ARE WAITING HERE

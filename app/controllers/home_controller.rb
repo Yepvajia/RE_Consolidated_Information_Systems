@@ -4,5 +4,4 @@ class HomeController < ApplicationController
     #   redirect_to rails_admin_path
     # end
   end
-  
 end
