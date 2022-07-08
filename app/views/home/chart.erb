@@ -1,161 +1,179 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-hello
-<br>
-<br>
-<br>
- 
- <%def get_customer_elevators(customer_id)
-  nb_elevators = 0
-  customer = Customer.find(customer_id)
-  customer.buildings.each do |building|
-      building.battery.each do |battery|
-          battery.column.each do |column|
-              column.elevator.each do |elevator|
-                  nb_elevators += 1
-              end
-          end
-      end
-  end
-  nb_elevators
-end
-dictionaryQ3 = {}
-Customer.all.each do |c|
-  dictionaryQ3[c.company_name] = get_customer_elevators(c.id)
-end
+<div class = "container">
 
-
-def contact_per_month()
-    dQ1 = {}
-    dQ1["Jan"] = 0
-    dQ1["Feb"] = 0
-    dQ1["Mar"] = 0
-    dQ1["Api"] = 0
-    dQ1["May"] = 0
-    dQ1["Jun"] = 0
-    dQ1["Jul"] = 0
-    dQ1["Auq"] = 0
-    dQ1["Sep"] = 0
-    dQ1["Oct"] = 0
-    dQ1["Nov"] = 0
-    dQ1["Dec"] = 0
-
-
-  Lead.all.each do |l|
-  Lead.find(l.id)
-        if l.date.month == 1 
-            dQ1["Jan"] += 1
-            
-        elsif l.date.month == 2
-            dQ1["Feb"] += 1
-            
-        elsif l.date.month == 3
-            dQ1["Mar"] += 1
-            
-        elsif l.date.month == 4
-            dQ1["Api"] += 1
-            
-        elsif l.date.month == 5
-            dQ1["May"] += 1
-            
-        elsif l.date.month == 6
-            dQ1["Jun"] += 1
-            
-        elsif l.date.month == 7
-            dQ1["Jul"] += 1
-            
-        elsif l.date.month == 8
-            dQ1["Auq"] += 1
-            
-        elsif l.date.month == 9
-            dQ1["Sep"] += 1
-            
-        elsif l.date.month == 10
-            dQ1["Oct"] += 1
-            
-        elsif l.date.month == 11
-            dQ1["Nov"] += 1
-            
-        else l.date.month == 12
-            dQ1["Dec"] += 1
-         end   
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <%##############################################################################################################################################################################%>
+    <%def get_customer_elevators(customer_id)
+    nb_elevators = 0
+    customer = Customer.find(customer_id)
+    customer.buildings.each do |building|
+        building.battery.each do |battery|
+            battery.column.each do |column|
+                column.elevator.each do |elevator|
+                    nb_elevators += 1
+                end
+            end
+        end
     end
-    dQ1
-end
-#######################################################################################################################################################################
-def no_of_quotes_per_month()
-    dQ2 = {}
-    dQ2["Jan"] = 0
-    dQ2["Feb"] = 0
-    dQ2["Mar"] = 0
-    dQ2["Api"] = 0
-    dQ2["May"] = 0
-    dQ2["Jun"] = 0
-    dQ2["Jul"] = 0
-    dQ2["Auq"] = 0
-    dQ2["Sep"] = 0
-    dQ2["Oct"] = 0
-    dQ2["Nov"] = 0
-    dQ2["Dec"] = 0
-
-
-  Quote.all.each do |q|
-  Quote.find(q.id)
-        if q.date.month == 1 
-            dQ2["Jan"] += 1
-            
-        elsif q.date.month == 2
-            dQ2["Feb"] += 1
-            
-        elsif q.date.month == 3
-            dQ2["Mar"] += 1
-            
-        elsif q.date.month == 4
-            dQ2["Api"] += 1
-            
-        elsif q.date.month == 5
-            dQ2["May"] += 1
-            
-        elsif q.date.month == 6
-            dQ2["Jun"] += 1
-            
-        elsif q.date.month == 7
-            dQ2["Jul"] += 1
-            
-        elsif q.date.month == 8
-            dQ2["Auq"] += 1
-            
-        elsif q.date.month == 9
-            dQ2["Sep"] += 1
-            
-        elsif q.date.month == 10
-            dQ2["Oct"] += 1
-            
-        elsif q.date.month == 11
-            dQ2["Nov"] += 1
-            
-        else q.date.month == 12
-            dQ2["Dec"] += 1
-         end   
+    nb_elevators
     end
-    dQ2
-end%>
-<%=bar_chart dictionaryQ3%>
-<br>
-<br>
-<br>
+    dictionaryQ3 = {}
+    Customer.all.each do |c|
+    dictionaryQ3[c.company_name] = get_customer_elevators(c.id)
+    end
+    ################################################################################################################################################################################
+    def contact_per_month()
+        dQ1 = {}
+        dQ1["Jan"] = 0
+        dQ1["Feb"] = 0
+        dQ1["Mar"] = 0
+        dQ1["Api"] = 0
+        dQ1["May"] = 0
+        dQ1["Jun"] = 0
+        dQ1["Jul"] = 0
+        dQ1["Auq"] = 0
+        dQ1["Sep"] = 0
+        dQ1["Oct"] = 0
+        dQ1["Nov"] = 0
+        dQ1["Dec"] = 0
 
-<%=bar_chart contact_per_month()%>
-<br>
-<br>
-<br>
-<br>
-<%=bar_chart no_of_quotes_per_month()%>
+
+        Lead.all.each do |l|
+        Lead.find(l.id)
+                if l.date.month == 1 
+                    dQ1["Jan"] += 1
+                    
+                elsif l.date.month == 2
+                    dQ1["Feb"] += 1
+                    
+                elsif l.date.month == 3
+                    dQ1["Mar"] += 1
+                    
+                elsif l.date.month == 4
+                    dQ1["Api"] += 1
+                    
+                elsif l.date.month == 5
+                    dQ1["May"] += 1
+                    
+                elsif l.date.month == 6
+                    dQ1["Jun"] += 1
+                    
+                elsif l.date.month == 7
+                    dQ1["Jul"] += 1
+                    
+                elsif l.date.month == 8
+                    dQ1["Auq"] += 1
+                    
+                elsif l.date.month == 9
+                    dQ1["Sep"] += 1
+                    
+                elsif l.date.month == 10
+                    dQ1["Oct"] += 1
+                    
+                elsif l.date.month == 11
+                    dQ1["Nov"] += 1
+                    
+                else l.date.month == 12
+                    dQ1["Dec"] += 1
+                end   
+            end
+        dQ1
+    end
+    #######################################################################################################################################################################
+    def no_of_quotes_per_month()
+        dQ2 = {}
+        dQ2["Jan"] = 0
+        dQ2["Feb"] = 0
+        dQ2["Mar"] = 0
+        dQ2["Api"] = 0
+        dQ2["May"] = 0
+        dQ2["Jun"] = 0
+        dQ2["Jul"] = 0
+        dQ2["Auq"] = 0
+        dQ2["Sep"] = 0
+        dQ2["Oct"] = 0
+        dQ2["Nov"] = 0
+        dQ2["Dec"] = 0
 
 
+        Quote.all.each do |q|
+        Quote.find(q.id)
+                if q.date.month == 1 
+                    dQ2["Jan"] += 1
+                    
+                elsif q.date.month == 2
+                    dQ2["Feb"] += 1
+                    
+                elsif q.date.month == 3
+                    dQ2["Mar"] += 1
+                    
+                elsif q.date.month == 4
+                    dQ2["Api"] += 1
+                    
+                elsif q.date.month == 5
+                    dQ2["May"] += 1
+                    
+                elsif q.date.month == 6
+                    dQ2["Jun"] += 1
+                    
+                elsif q.date.month == 7
+                    dQ2["Jul"] += 1
+                    
+                elsif q.date.month == 8
+                    dQ2["Auq"] += 1
+                    
+                elsif q.date.month == 9
+                    dQ2["Sep"] += 1
+                    
+                elsif q.date.month == 10
+                    dQ2["Oct"] += 1
+                    
+                elsif q.date.month == 11
+                    dQ2["Nov"] += 1
+                    
+                else q.date.month == 12
+                    dQ2["Dec"] += 1
+                end   
+            end
+        dQ2
+    end%>
+    <%#############################################################################################################################################################################%>
+    <div>
+        <div>
+            <h3 class = "text-center">A visual represntation of Contact request per Month, Quote solications per Month and Elevators per Customer<h3>
+        </div>
+
+        <div>
+            
+            <br>
+            <hr>
+            <h4 class = "text-center">Contact Requests Made Per Month<h4>
+            <hr>
+            <%=bar_chart contact_per_month()%>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <hr>
+            <h4 class = "text-center">Quote Solicitions Per Month<h4>
+            <hr>
+            <%=bar_chart no_of_quotes_per_month()%>
+            <hr>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <h4 class = "text-center">Elvators per Customer<h4>
+            <hr>
+            <%=bar_chart dictionaryQ3%>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
