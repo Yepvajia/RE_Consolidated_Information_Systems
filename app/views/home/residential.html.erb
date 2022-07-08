@@ -17,7 +17,7 @@
 </section>
 <!-- /Parallax -->
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" style="padding: 50px 0px;">
 	<div class="container">
 		<header class="text-center mb-60">
 			<h2>Contact Us</h2>
@@ -39,59 +39,65 @@
 				<div id="alert_mandatory" class="alert alert-danger mb-30">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Sorry!</strong> You need to complete all mandatory (*) fields! </div>
 				<!-- /Alert Mandatory -->
-				<form action="php/contact.php" method="post" enctype="multipart/form-data">
-					<fieldset>
-						<input type="hidden" name="action" value="contact_send" />
-						<div class="row">
-							<div class="col-md-4">
-								<label for="contact:name">Full Name *</label>
-								<input required type="text" value="" class="form-control" name="contact[name][required]" id="contact:name"> </div>
-							<div class="col-md-4">
-								<label for="contact:email">E-mail Address *</label>
-								<input required type="email" value="" class="form-control" name="contact[email][required]" id="contact:email"> </div>
-							<div class="col-md-4">
-								<label for="contact:phone">Phone</label>
-								<input type="text" value="" class="form-control" name="contact[phone]" id="contact:phone"> </div>
-							<div class="col-md-4">
-								<label for="contact:company_name">Business Name</label>
-								<input type="text" value="" class="form-control" name="contact[company_name]" id="contact:company_name"> </div>
-							<div class="col-md-4">
-								<label for="contact:project_name">Project Name *</label>
-								<input type="text" value="" class="form-control" name="contact[project_name][required]" id="contact:project_name"> </div>
-						</div>
-						<div class="row">
-							<div class="col-md-8">
-								<label for="contact:project_description">Project Description *</label>
-								<input required type="text" value="" class="form-control" name="contact[project_description][required]" id="contact:project_description"> </div>
-							<div class="col-md-4">
-								<label for="contact:department">Department *</label>
-								<select class="form-control pointer" name="contact[department][required]" id="contact:department">
-									<option value="">--- Select ---</option>
-									<option value="Support">Support</option>
-									<option value="Residential">Residential</option>
-									<option value="Corporate">Corporate</option>
-								</select>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<label for="contact:message">Message *</label>
-								<textarea required maxlength="10000" rows="8" class="form-control" name="contact[message][required]" id="contact:message"></textarea>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<label for="contact:attachment">File Attachment</label>
-								<!-- custom file upload -->
-								<input class="custom-file-upload" type="file" id="file" name="contact[attachment]" id="contact:attachment" data-btn-text="Select a File" /> <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small> </div>
-							</div>
-					</fieldset>
-					<div class="row">
-						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary">SEND MESSAGE</button>
-						</div>
-					</div>
-				</form>
+		<%= form_with(model: @lead, url: "/create_lead") do |form| %>
+			<div class="row">
+				<div class="field col-md-4">
+					<%= form.label :name %>
+					<%= form.text_field :name, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :company_name %>
+					<%= form.text_field :company_name, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :email %>
+					<%= form.text_field :email, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :phone %>
+					<%= form.text_field :phone, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :project_name %>
+					<%= form.text_field :project_name, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :date %>
+					<%= form.text_field :date, :readonly => true, value: Date.today, class: "form-control pointer" %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="field col-md-8">
+					<%= form.label :description %>
+					<%= form.text_field :description, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :department %>
+					<%= form.select(:department, ["Support", "HR", "Juice", "Elevator Heads", "IT"], {}, { :style => "padding: 0px 4 px", class: "form-control pointer"})%>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="field col-md-12">
+					<%= form.label :message %>
+					<%= form.text_area :message, rows: 10, class: "form-control pointer"%>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="field col-md-12">
+					<%= form.label :file %>
+					<%= form.file_field :file %>
+				</div>
+			</div>
+
+
+			<div class="actions">
+				<%= form.submit %>
+			</div>
+		<% end %>
+		
 			</div>
 			<!-- /FORM -->
 			<!-- INFO -->
@@ -99,7 +105,7 @@
 				<h2>Visit Us</h2>
 				<div id="map2" class="h-400"></div>
 				<hr />
-				<p> <span class="block"><strong> Address:</strong> 4468 Wellington St Suite 204, Verdun, Quebec H4G 1W5</span> <span class="block"><strong> Phone:</strong> <a href="tel:(418) 555-1234">(418) 555-1234</a></span> <span class="block"><strong> Email:</strong> <a href="mailto:info@codeboxx.biz">info@codeboxx.biz</a></span> </p>
+				<p> <span class="block"><strong>Address:</strong> 4468 Wellington St Suite 204, Verdun, Quebec H4G 1W5</span> <span class="block"><strong>Phone:</strong> <a href="tel:(418) 555-1234">(418) 555-1234</a></span> <span class="block"><strong>Email:</strong> <a href="mailto:info@codeboxx.biz">info@codeboxx.biz</a></span> </p>
 			</div>
 			<!-- /INFO -->
 		</div>
