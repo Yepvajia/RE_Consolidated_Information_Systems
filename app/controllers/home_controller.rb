@@ -14,17 +14,7 @@ class HomeController < ApplicationController
 
   def create_lead
 
-    @lead = Lead.new
-    @lead.name = params['name'],
-    @lead.company_name = params['company_name'],
-    @lead.email = params['email'],
-    @lead.phone = params['phone'],
-    @lead.project_name = params['project_name'],
-    @lead.description = params['description'],
-    @lead.department = params['department'],
-    @lead.message = params['message'],
-    @lead.file = params['file'],
-    @lead.date = params['date']
+    @lead = Lead.new(params.permit(:name, :company_name, :email, :phone, :project_name , :description , :department , :message , :file , :date))
 
     if @lead.save
       redirect_to root_path, notice: "Contact successfully submitted."

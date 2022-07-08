@@ -65,7 +65,7 @@
 	<div class="container">
 		<div class="text-center">
 			<h2 class="fs-40 fw-300">Reaching for the Stars since 1976</h2>
-			<%= link_to "GET A QUOTE",home_quote_path,class:"btn btn-danger btn-lg"%> &nbsp; OR &nbsp; <a class="btn btn-primary btn-lg scrollTo" href="#contact">CONTACT US</a> </div>
+			<%= link_to "GET A QUOTE",new_quote_path,class:"btn btn-danger btn-lg"%> &nbsp; OR &nbsp; <a class="btn btn-primary btn-lg scrollTo" href="#contact">CONTACT US</a> </div>
 	</div>
 </section>
 <!-- /Parallax -->
@@ -573,7 +573,7 @@
 				</div>
 				<div class="field col-md-4">
 					<%= form.label :department %>
-					<%= form.select(:department, ['Support', 'Residential', 'Corporate', 'Hybrid'], {}, { :style => "padding: 0px 4 px", class: "form-control pointer"})%>
+					<%= form.select(:department, ["Support", "HR", "Juice", "Elevator Heads", "IT"], {}, { :style => "padding: 0px 4 px", class: "form-control pointer"})%>
 				</div>
 			</div>
 
