@@ -143,6 +143,25 @@ Employee.create!([{
   user_id: 10
 }])
 
+Quote.destroy_all
+Quote.connection.execute('ALTER TABLE quotes AUTO_INCREMENT = 1')
+
+40.times do
+  Quote.create!(
+    building_type: type(),
+    price: elevatorsModel(),
+    number_of_apartments: rand(100),
+    number_of_companies: rand(100),
+    number_of_corporations: rand(100),
+    number_of_floors: rand(100),
+    number_of_basements: rand(100),
+    number_of_parking_spots: rand(100),
+    number_of_elevators: rand(100),
+    maximum_occupancy: rand(100),
+    business_hours: rand(24),
+    date: Faker::Date.between(from: 3.years.ago, to: Date.today)
+  )
+end
 
 Address.destroy_all
 Address.connection.execute('ALTER TABLE addresses AUTO_INCREMENT = 1')
