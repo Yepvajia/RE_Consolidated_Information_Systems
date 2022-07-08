@@ -28,7 +28,7 @@ mysql: &mysql
   timeout: 5000
   database: roc_elv_db
   username: root
-  password: Sevada12?
+  password: razakade123
   host: localhost
 
 development:

@@ -211,9 +211,9 @@ Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
   Customer.create!(
     user_id: i + 11,
     creation_date: Faker::Date.between(from: 3.years.ago, to: Date.today),
-    company_name: Faker::Company.unique.name,
+    company_name: Faker::Company.unique.name.gsub(/\'/, ''),
     address_id: i + 1,
-    name: Faker::Name.unique.name,
+    name: Faker::Name.unique.name.gsub(/\'/, ''),
     phone: Faker::PhoneNumber.unique.cell_phone,
     email: user.email,
     description: Faker::Lorem.paragraph,
@@ -231,7 +231,7 @@ Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
   Building.create!(
     customer_id: i + 1,
     address_id: i + 1,
-    name: customer.name,
+    name: customer.name.gsub(/\'/, ''),
     email: customer.email,
     phone: customer.phone,
     tech_name: Faker::Name.unique.name,

@@ -16,6 +16,7 @@ gem "chartkick"
 gem 'rails', '~> 5.2.7', '>= 5.2.7.1'
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
+
 # Use postgreSQL as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
