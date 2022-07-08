@@ -1,17 +1,26 @@
-#TO create the 2 database run this commands:
-# rails db:create
-#This will create the database in postgresql and mysql
-# & 
-#rails db:migrate to push the table to the database
-
-# ware_house: &ware_house
-#   adapter: postgresql
+#   gem install mysql2
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# default: &default
+#   adapter: mysql2
 #   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 #   timeout: 5000
-#   database: roc_elv_db_warehouse
-#   username: 
+#   database: roc_elv_db
+#   username: root
+#   password: razakade123
+#   host: localhost
+
+# postgres: &postgres
+#   adapter: postgres
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+#   database: roc_elv_db
+#   username: root
 #   password: 
 #   host: localhost
+
 
 mysql: &mysql
   adapter: mysql2
@@ -24,13 +33,21 @@ mysql: &mysql
 
 development:
   <<: *mysql
-  # <<: *ware_house
+  # <<: *postgres
+  database: roc_elv_db
+  # database: roc_elv_db
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
   <<: *mysql
-  # <<: *ware_house
+  # <<: *postgres
+  database: roc_elv_db_test
+  # database: roc_elv_db_test
 
 production:
   <<: *mysql
-  # <<: *ware_house
-
+  # <<: *postgres
+  database: roc_elv_db
+  # database: roc_elv_db

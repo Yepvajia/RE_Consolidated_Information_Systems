@@ -463,7 +463,7 @@
 			</li>
 			<li class="col-md-3 col-sm-3 col-6">
 				<a href="#top">
-					<%= image_tag "clients/adobe.png",class:"img-fluid", height: 100, width: 100%>
+					<%= image_tag "clients/adobe.png",class:"img-fluid", height: 200, width: 200%>
 				</a>
 			</li>
 			<li class="col-md-3 col-sm-3 col-6">
@@ -473,7 +473,7 @@
 			</li>
 			<li class="col-md-3 col-sm-3 col-6">
 				<a href="#top">
-					<%= image_tag "clients/valve.png",class:"img-fluid", height: 100, width: 100%>
+					<%= image_tag "clients/valve.png",class:"img-fluid", height: 200, width: 200%>
 				</a>
 			</li>
 			<li class="col-md-3 col-sm-3 col-6">
@@ -493,7 +493,7 @@
 			</li>
 			<li class="col-md-3 col-sm-3 col-6">
 				<a href="#top">
-					<%= image_tag "clients/codeboxx.png",class:"img-fluid", height: 100, width: 100%>
+					<%= image_tag "clients/codeboxx.png",class:"img-fluid", height: 200, width: 200%>
 				</a>
 			</li>
 			<li class="col-md-3 col-sm-3 col-6">
@@ -538,59 +538,65 @@
 				<div id="alert_mandatory" class="alert alert-danger mb-30">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Sorry!</strong> You need to complete all mandatory (*) fields! </div>
 				<!-- /Alert Mandatory -->
-				<form action="php/contact.php" method="post" enctype="multipart/form-data">
-					<fieldset>
-						<input type="hidden" name="action" value="contact_send" />
-						<div class="row">
-							<div class="col-md-4">
-								<label for="name">Full Name *</label>
-								<input required type="text" value="" class="form-control" name="contact[name][required]" id="name"> </div>
-							<div class="col-md-4">
-								<label for="email">E-mail Address *</label>
-								<input required type="email" value="" class="form-control" name="contact[email][required]" id="email"> </div>
-							<div class="col-md-4">
-								<label for="phone">Phone</label>
-								<input type="text" value="" class="form-control" name="contact[phone]" id="phone"> </div>
-							<div class="col-md-4">
-								<label for="company_name">Business Name</label>
-								<input type="text" value="" class="form-control" name="contact[company_name]" id="company_name"> </div>
-							<div class="col-md-4">
-								<label for="project_name">Project Name *</label>
-								<input type="text" value="" class="form-control" name="contact[project_name][required]" id="project_name"> </div>
-						</div>
-						<div class="row">
-							<div class="col-md-8">
-								<label for="project_description">Project Description *</label>
-								<input required type="text" value="" class="form-control" name="contact[project_description][required]" id="project_description"> </div>
-							<div class="col-md-4">
-								<label for="department">Department *</label>
-								<select class="form-control pointer" name="contact[department][required]" id="department">
-									<option value="">--- Select ---</option>
-									<option value="Support">Support</option>
-									<option value="Residential">Residential</option>
-									<option value="Corporate">Corporate</option>
-								</select>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<label for="message">Message *</label>
-								<textarea required maxlength="10000" rows="8" class="form-control" name="contact[message][required]" id="message"></textarea>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<label for="attachment">File Attachment</label>
-								<!-- custom file upload -->
-								<input class="custom-file-upload" type="file" id="file" name="contact[attachment]" id="attachment" data-btn-text="Select a File" /> <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small> </div>
-						</div>
-					</fieldset>
-					<div class="row">
-						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary">SEND MESSAGE</button>
-						</div>
-					</div>
-				</form>
+		<%= form_with(model: @lead, url: "/create_lead") do |form| %>
+			<div class="row">
+				<div class="field col-md-4">
+					<%= form.label :name %>
+					<%= form.text_field :name, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :company_name %>
+					<%= form.text_field :company_name, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :email %>
+					<%= form.text_field :email, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :phone %>
+					<%= form.text_field :phone, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :project_name %>
+					<%= form.text_field :project_name, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :date %>
+					<%= form.text_field :date, :readonly => true, value: Date.today, class: "form-control pointer" %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="field col-md-8">
+					<%= form.label :description %>
+					<%= form.text_field :description, class: "form-control pointer" %>
+				</div>
+				<div class="field col-md-4">
+					<%= form.label :department %>
+					<%= form.select(:department, ['Support', 'Residential', 'Corporate', 'Hybrid'], {}, { :style => "padding: 0px 4 px", class: "form-control pointer"})%>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="field col-md-12">
+					<%= form.label :message %>
+					<%= form.text_area :message, rows: 10, class: "form-control pointer"%>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="field col-md-12">
+					<%= form.label :file %>
+					<%= form.file_field :file %>
+				</div>
+			</div>
+
+
+			<div class="actions">
+				<%= form.submit %>
+			</div>
+		<% end %>
+		
 			</div>
 			<!-- /FORM -->
 			<!-- INFO -->
@@ -604,7 +610,7 @@
 		</div>
 	</div>
 </section>
-<!-- /CONTACT -->z
+<!-- /CONTACT -->
 <script>
 $(".owl-carousel").owlCarousel({
 	items: 4,

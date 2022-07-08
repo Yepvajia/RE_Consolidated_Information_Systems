@@ -143,6 +143,25 @@ Employee.create!([{
   user_id: 10
 }])
 
+Quote.destroy_all
+Quote.connection.execute('ALTER TABLE quotes AUTO_INCREMENT = 1')
+
+40.times do
+  Quote.create!(
+    building_type: type(),
+    price: elevatorsModel(),
+    number_of_apartments: rand(100),
+    number_of_companies: rand(100),
+    number_of_corporations: rand(100),
+    number_of_floors: rand(100),
+    number_of_basements: rand(100),
+    number_of_parking_spots: rand(100),
+    number_of_elevators: rand(100),
+    maximum_occupancy: rand(100),
+    business_hours: rand(24),
+    date: Faker::Date.between(from: 3.years.ago, to: Date.today)
+  )
+end
 
 Address.destroy_all
 Address.connection.execute('ALTER TABLE addresses AUTO_INCREMENT = 1')
@@ -161,9 +180,9 @@ Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
   Customer.create!(
     user_id: i + 11,
     creation_date: Faker::Date.between(from: 3.years.ago, to: Date.today),
-    company_name: Faker::Company.unique.name,
+    company_name: Faker::Company.unique.name.gsub(/\'/, ''),
     address_id: i + 1,
-    name: Faker::Name.unique.name,
+    name: Faker::Name.unique.name.gsub(/\'/, ''),
     phone: Faker::PhoneNumber.unique.cell_phone,
     email: user.email,
     description: Faker::Lorem.paragraph,
@@ -181,7 +200,7 @@ Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
   Building.create!(
     customer_id: i + 1,
     address_id: i + 1,
-    name: customer.name,
+    name: customer.name.gsub(/\'/, ''),
     email: customer.email,
     phone: customer.phone,
     tech_name: Faker::Name.unique.name,
@@ -208,7 +227,7 @@ BuildingDetail.connection.execute('ALTER TABLE building_details AUTO_INCREMENT =
 
 33.times do
   BuildingDetail.create!(
-    building_id: 1,
+    building_id: buildingID(),
     key: Faker::Lorem.sentence(word_count: 1),
     value: Faker::Lorem.sentence(word_count: 1)
   )
@@ -220,7 +239,7 @@ Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
 40.times do
   Battery.create!(
-    building_id: 1,
+    building_id: buildingID(),
     building_type: type(),
     status: status(),
     employee_id: employeeId(),
@@ -238,7 +257,7 @@ Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
 55.times do
   Column.create!(
-    battery_id: buildingAndBatteryID(),
+    battery_id: batteryID(),
     building_type: type(),
     floors: floors(),
     status: status(),
@@ -253,7 +272,7 @@ Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
 100.times do
   Elevator.create!(
-    column_id: colID() ,
+    column_id: columnID() ,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     building_type: type(),
