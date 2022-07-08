@@ -18,5 +18,7 @@
 //= require jquery-3.3.1.min
 //= require owl.carousel
 //= require turbolinks
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 

@@ -227,7 +227,7 @@ BuildingDetail.connection.execute('ALTER TABLE building_details AUTO_INCREMENT =
 
 33.times do
   BuildingDetail.create!(
-    building_id: buildingAndBatteryID(),
+    building_id: buildingID(),
     key: Faker::Lorem.sentence(word_count: 1),
     value: Faker::Lorem.sentence(word_count: 1)
   )
@@ -239,7 +239,7 @@ Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
 40.times do
   Battery.create!(
-    building_id: buildingAndBatteryID(),
+    building_id: buildingID(),
     building_type: type(),
     status: status(),
     employee_id: employeeId(),
@@ -257,7 +257,7 @@ Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
 55.times do
   Column.create!(
-    battery_id: buildingAndBatteryID(),
+    battery_id: batteryID(),
     building_type: type(),
     floors: floors(),
     status: status(),
@@ -272,7 +272,7 @@ Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
 100.times do
   Elevator.create!(
-    column_id: colID() ,
+    column_id: columnID() ,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     building_type: type(),
