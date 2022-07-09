@@ -5,7 +5,7 @@ ware_house: &ware_house
   database: roc_elv_db_warehouse
   username: codeboxx
   password: Codeboxx1!
-  host: localhost
+  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
 
 development:
   <<: *ware_house
