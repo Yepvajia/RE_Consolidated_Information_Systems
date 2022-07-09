@@ -5,7 +5,7 @@ warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
 
 namespace :db_warehouse do
 
-    
+
 
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
@@ -47,19 +47,14 @@ namespace :db_warehouse do
         end
 
         #    insert data  to fact_elevator
-        Customer.find_each do |c|
-            Building.find_each do |b|
-                Elevator.find_each do |e|
-                    warehouse_db.exec("INSERT INTO fact_elevator(serial_number,comm_date,building_id,customer_id,building_city) VALUES ('#{e.serial_number}','#{e.comm_date}',#{b.id},#{c.id},'#{c.address.city}')")
-                end
-            end
+        Elevator.find_each do |e|
+            warehouse_db.exec("INSERT INTO fact_elevator(serial_number,comm_date,building_id,customer_id,building_city) VALUES ('#{e.serial_number}','#{e.comm_date}',#{b.id},#{c.id},'#{c.address.city}')")
         end
+        
          #    insert data  to dim_customers
         Customer.find_each do |c|
-            Quote.find_each do |q|
-                var = rand(10)
-                warehouse_db.exec("INSERT INTO dim_customers(creation_date,company_name,company_main_contact_name,company_main_contact_email,nb_elevators,customer_city) VALUES ('#{c.creation_date}','#{c.company_name}','#{c.auth_name}','#{c.mangr_email}',#{var},'#{c.address.city}')")
-            end
+            var = rand(10)
+            warehouse_db.exec("INSERT INTO dim_customers(creation_date,company_name,company_main_contact_name,company_main_contact_email,nb_elevators,customer_city) VALUES ('#{c.creation_date}','#{c.company_name}','#{c.auth_name}','#{c.mangr_email}',#{var},'#{c.address.city}')")
         end
     end
 end
