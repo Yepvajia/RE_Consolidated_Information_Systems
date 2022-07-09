@@ -1,15 +1,14 @@
 require 'pg'
 require 'mysql2'
+require 'faker'
 
 warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
 
 namespace :db_warehouse do
-
-
-
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
         Rake::Task["db_warehouse:insert_data"].invoke
+        Rake::Task["db_warehouse:show"].invoke
     end
 
     task create_warehouse_table: :environment do
@@ -27,34 +26,55 @@ namespace :db_warehouse do
     end
 
     task insert_data: :environment do
-        #    insert data from customers to fact_quote
-        # Customer.find_each do |c|
-        #     warehouse_db.exec("INSERT INTO fact_quote(company_name,email) VALUES ('#{c.company_name}','#{c.email}')")
-        # end
-
         #    insert data to fact_quote
+        var = 1
         Quote.find_each do |q|
-            var = 1
-            Customer.find_each do |c|
-                warehouse_db.exec("INSERT INTO fact_quote(quote_id,creation_date,nb_elevator,company_name,email) VALUES (#{var},'#{q.created_at}',#{q.number_of_elevators},'#{c.company_name}','#{c.email}')")
-                var += 1
-            end
+            warehouse_db.exec("INSERT INTO fact_quote(quote_id,creation_date,nb_elevator,company_name,email) VALUES (#{var},'#{Faker::Date.between(from: '2019-01-23', to: '2022-06-25')}',#{q.number_of_elevators},'#{Faker::Company.unique.name.gsub(/\'/, '')}','#{Faker::Internet.email}')")
+            var += 1
         end
 
         #    insert data to fact_contact
-        Lead.find_each do |l|
-            warehouse_db.exec("INSERT INTO fact_contact(contact_id,creation_date,company_name,email,project_name) VALUES (#{l.id},'#{l.created_at}',#{l.company_name},'#{l.email}','#{l.project_name}')")
+        var_2 = 1
+        30.times do
+            warehouse_db.exec("INSERT INTO fact_contact(contact_id,creation_date,company_name,email,project_name) VALUES (#{var_2},'#{Faker::Date.between(from: '2019-01-23', to: '2022-06-25')}','#{Faker::Company.unique.name.gsub(/\'/, '')}','#{Faker::Internet.email}','#{Faker::Movie.unique.title.gsub(/\'/, '')}')")
+            var_2 += 1
         end
 
         #    insert data  to fact_elevator
         Elevator.find_each do |e|
-            warehouse_db.exec("INSERT INTO fact_elevator(serial_number,comm_date,building_id,customer_id,building_city) VALUES ('#{e.serial_number}','#{e.comm_date}',#{b.id},#{c.id},'#{c.address.city}')")
+            b_id = rand(10)
+            c_id = rand(10)
+            warehouse_db.exec("INSERT INTO fact_elevator(serial_number,comm_date,building_id,customer_id,building_city) VALUES ('#{e.serial_number}','#{e.comm_date}',#{b_id},#{c_id},'#{Faker::Address.city.gsub(/\'/, '')}')")
         end
-        
+
          #    insert data  to dim_customers
         Customer.find_each do |c|
-            var = rand(10)
+            var = rand(30)
             warehouse_db.exec("INSERT INTO dim_customers(creation_date,company_name,company_main_contact_name,company_main_contact_email,nb_elevators,customer_city) VALUES ('#{c.creation_date}','#{c.company_name}','#{c.auth_name}','#{c.mangr_email}',#{var},'#{c.address.city}')")
+        end
+    end
+
+    task show: :environment do
+        question1 = warehouse_db.exec("SELECT COUNT(contact_id), creation_date FROM fact_contact GROUP BY (creation_date)")
+        puts ""
+        puts "The number of unique requests (ContactId) grouped by Month"
+        puts ""
+        question1.find_all do |q_1|
+            puts q_1
+        end
+        question2 = warehouse_db.exec("SELECT COUNT(quote_id), creation_date FROM fact_quote GROUP BY (creation_date)")
+        puts ""
+        puts "The number of unique requests (QuoteId) grouped by Month"
+        puts ""
+        question2.find_all do |q_2|
+            puts q_2
+        end
+        question3 = warehouse_db.exec("SELECT COUNT(nb_elevators), company_main_contact_name FROM dim_customers GROUP BY (company_main_contact_name)")
+        puts ""
+        puts "The number of elevators (ElevatorId) contained in the buildings belonging to each customer"
+        puts ""
+        question3.find_all do |q_3|
+            puts q_3
         end
     end
 end
