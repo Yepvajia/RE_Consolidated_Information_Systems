@@ -20,6 +20,10 @@
     <%= form.label :price %>
     <%= form.select(:price, ['Standard', 'Premium', 'Excelium']) %>
   </div>
+    <%#= form.radio_button :contactmethod, 'email', :checked => true %> 
+    <%#= label :contactmethod_email, 'Email' %>
+    <%#= form.radio_button :contactmethod, 'sms' %>
+    <%#= label :contactmethod_sms, 'SMS' %>
 
   <div class="field">
     <%= form.label :number_of_apartments %>

@@ -10,7 +10,98 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_02_004554) do
+ActiveRecord::Schema.define(version: 2022_07_05_185041) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "address_type"
+    t.string "status"
+    t.string "enity"
+    t.string "num_street"
+    t.string "apt_suite"
+    t.string "city"
+    t.string "postal_code"
+    t.string "country"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "batteries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "building_id"
+    t.string "building_type"
+    t.string "status"
+    t.integer "employee_id"
+    t.date "comm_date"
+    t.date "inspec_date"
+    t.integer "certificate"
+    t.text "information"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "building_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "building_id"
+    t.string "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "buildings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "address_id"
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "tech_name"
+    t.string "tech_email"
+    t.string "tech_phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "columns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "battery_id"
+    t.string "building_type"
+    t.integer "floors"
+    t.string "status"
+    t.string "information"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "user_id"
+    t.date "creation_date"
+    t.string "company_name"
+    t.integer "address_id"
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.text "description"
+    t.string "auth_name"
+    t.string "auth_phone"
+    t.string "mangr_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "elevators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.integer "column_id"
+    t.string "serial_number"
+    t.string "model"
+    t.string "building_type"
+    t.string "status"
+    t.date "comm_date"
+    t.date "inspec_date"
+    t.integer "certificate"
+    t.text "information"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "first_name"
@@ -18,6 +109,21 @@ ActiveRecord::Schema.define(version: 2022_07_02_004554) do
     t.string "title"
     t.string "email"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.string "company_name"
+    t.string "email"
+    t.string "phone"
+    t.string "project_name"
+    t.text "description"
+    t.string "department"
+    t.text "message"
+    t.binary "file"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +140,7 @@ ActiveRecord::Schema.define(version: 2022_07_02_004554) do
     t.integer "number_of_elevators"
     t.integer "maximum_occupancy"
     t.integer "business_hours"
+    t.date "date", default: "2022-07-08"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

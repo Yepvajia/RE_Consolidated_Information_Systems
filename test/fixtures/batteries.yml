@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  building_id: 1
+  type: 
+  status: MyString
+  employee_id: MyString
+  comm_date: 2022-07-05
+  inspec_date: 2022-07-05
+  certificate: 1
+  information: MyText
+  notes: MyText
+
+two:
+  building_id: 1
+  type: 
+  status: MyString
+  employee_id: MyString
+  comm_date: 2022-07-05
+  inspec_date: 2022-07-05
+  certificate: 1
+  information: MyText
+  notes: MyText

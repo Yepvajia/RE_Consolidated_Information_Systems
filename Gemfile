@@ -2,12 +2,23 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.6'
-gem 'devise'# for devise (back office)
-gem 'rails_admin' # for rails admin backofficre
+# for grouping by date
+gem "groupdate"
+# for fake data
+gem 'faker'
+# for devise (back office) 
+gem 'devise'
+# for rails admin backofficre
+gem 'rails_admin' 
+# for the charts and diagram
+gem "chartkick"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7', '>= 5.2.7.1'
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
+
+# Use postgreSQL as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.11'
 # Use SCSS for stylesheets
