@@ -3,8 +3,8 @@ ware_house: &ware_house
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   database: roc_elv_db_warehouse
-  username: 
-  password: 
+  username: codeboxx
+  password: Codeboxx1!
   host: localhost
 
 development:
