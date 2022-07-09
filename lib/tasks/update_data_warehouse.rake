@@ -5,6 +5,8 @@ warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
 
 namespace :db_warehouse do
 
+    
+
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
         Rake::Task["db_warehouse:insert_data"].invoke
