@@ -18,7 +18,6 @@ postgres: &postgres
   username: codeboxx
   password: Codeboxx1!
   host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
-  pool: 5
 
 
 mysql: &mysql
@@ -27,7 +26,7 @@ mysql: &mysql
   timeout: 5000
   database: roc_elv_db
   username: root
-  password: razakade123
+  password: Sevada12?
   host: localhost
 
 development:
