@@ -12,14 +12,13 @@
 #   password: razakade123
 #   host: localhost
 
-# postgres: &postgres
-#   adapter: postgres
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   timeout: 5000
-#   database: roc_elv_db
-#   username: root
-#   password: 
-#   host: localhost
+postgres: &postgres
+  adapter: postgresql
+  encoding: unicode
+  username: codeboxx
+  password: Codeboxx1!
+  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
+  pool: 5
 
 
 mysql: &mysql
