@@ -140,11 +140,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.integer "number_of_elevators"
     t.integer "maximum_occupancy"
     t.integer "business_hours"
-<<<<<<< HEAD
     t.date "date", default: "2022-07-10"
-=======
-    t.date "date", default: "2022-07-07"
->>>>>>> 53921523cca8a6342385d8c6073582eb6b10b9aa
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
