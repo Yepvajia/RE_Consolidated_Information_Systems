@@ -3,24 +3,7 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'mysql2'
 #
-# default: &default
-#   adapter: mysql2
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   timeout: 5000
-#   database: roc_elv_db
-#   username: root
-#   password: razakade123
-#   host: localhost
-
-# postgres: &postgres
-#   adapter: postgres
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   timeout: 5000
-#   database: roc_elv_db
-#   username: root
-#   password: 
-#   host: localhost
-
+#   rails db:create:all to create the 2 Database 
 
 mysql: &mysql
   adapter: mysql2
@@ -31,23 +14,26 @@ mysql: &mysql
   password: razakade123
   host: localhost
 
+postgres: &postgres
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  database: roc_elv_db_warehouse
+  username: 
+  password: 
+  host: localhost
+
 development:
+  <<: *postgres
   <<: *mysql
-  # <<: *postgres
-  database: roc_elv_db
-  # database: roc_elv_db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
+  <<: *postgres
   <<: *mysql
-  # <<: *postgres
-  database: roc_elv_db_test
-  # database: roc_elv_db_test
 
 production:
+  <<: *postgres
   <<: *mysql
-  # <<: *postgres
-  database: roc_elv_db
-  # database: roc_elv_db
