@@ -2,9 +2,11 @@ require 'pg'
 require 'mysql2'
 require 'faker'
 
-warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
 
 namespace :db_warehouse do
+    
+    warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
+
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
         Rake::Task["db_warehouse:insert_data"].invoke
@@ -50,7 +52,7 @@ namespace :db_warehouse do
          #    insert data  to dim_customers
         Customer.find_each do |c|
             var = rand(30)
-            warehouse_db.exec("INSERT INTO dim_customers(creation_date,company_name,company_main_contact_name,company_main_contact_email,nb_elevators,customer_city) VALUES ('#{c.creation_date}','#{c.company_name}','#{c.auth_name}','#{c.mangr_email}',#{var},'#{c.address.city}')")
+            warehouse_db.exec("INSERT INTO dim_customers(creation_date,company_name,company_main_contact_name,company_main_contact_email,nb_elevators,customer_city) VALUES ('#{c.creation_date}','#{c.company_name}','#{c.auth_name}','#{c.mangr_email}',#{var},'#{Faker::Address.city.gsub(/\'/, '')}}')")
         end
     end
 
@@ -69,7 +71,7 @@ namespace :db_warehouse do
         question2.find_all do |q_2|
             puts q_2
         end
-        question3 = warehouse_db.exec("SELECT COUNT(nb_elevators), company_main_contact_name FROM dim_customers GROUP BY (company_main_contact_name)")
+        question3 = warehouse_db.exec("SELECT nb_elevators, company_main_contact_name FROM dim_customers")
         puts ""
         puts "The number of elevators (ElevatorId) contained in the buildings belonging to each customer"
         puts ""

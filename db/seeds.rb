@@ -169,11 +169,11 @@ Lead.connection.execute('ALTER TABLE leads AUTO_INCREMENT = 1')
 departments = ["Support", "HR", "Juice", "Elevator Heads", "IT"]
 100.times do
   Lead.create!(
-    name: Faker::Name.unique.name,
-    company_name: Faker::Company.unique.name,
+    name: Faker::Name.unique.name.gsub(/\'/, ''),
+    company_name: Faker::Company.unique.name.gsub(/\'/, ''),
     email: Faker::Internet.unique.email,
     phone: Faker::PhoneNumber.unique.cell_phone,
-    project_name: Faker::Movie.unique.title,
+    project_name: Faker::Movie.unique.title.gsub(/\'/, ''),
     description: Faker::Lorem.paragraph,
     department: departments[rand(departments.count)],
     message: Faker::Lorem.paragraph,
@@ -217,7 +217,7 @@ Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
     phone: Faker::PhoneNumber.unique.cell_phone,
     email: user.email,
     description: Faker::Lorem.paragraph,
-    auth_name: Faker::Name.unique.name,
+    auth_name: Faker::Name.unique.name.gsub(/\'/, ''),
     auth_phone: Faker::PhoneNumber.unique.cell_phone,
     mangr_email: Faker::Internet.unique.email
   )
@@ -234,7 +234,7 @@ Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
     name: customer.name.gsub(/\'/, ''),
     email: customer.email,
     phone: customer.phone,
-    tech_name: Faker::Name.unique.name,
+    tech_name: Faker::Name.unique.name.gsub(/\'/, ''),
     tech_email: Faker::Internet.unique.email,
     tech_phone: Faker::PhoneNumber.unique.cell_phone
   )
