@@ -5,7 +5,7 @@ require 'faker'
 
 namespace :db_warehouse do
     
-    #warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
+    warehouse_db = PG.connect( host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", dbname: 'roc_elv_db_warehouse', :user => 'codeboxx', :password => 'Codeboxx1!' )
 
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
