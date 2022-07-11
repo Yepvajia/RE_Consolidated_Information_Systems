@@ -295,7 +295,7 @@ Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     building_type: type(),
-    status: status(),
+    status: 'active',
     comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     certificate: Faker::Number.number(digits: 7),
