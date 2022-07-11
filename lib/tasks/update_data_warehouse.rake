@@ -5,7 +5,7 @@ require 'faker'
 
 namespace :db_warehouse do
     
-    warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
+    #warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
 
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
