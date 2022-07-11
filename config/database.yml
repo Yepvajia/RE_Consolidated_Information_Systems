@@ -12,6 +12,7 @@ mysql: &mysql
   password: Codeboxx1!
   host: codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com
   port: 3306
+  database: roc_elv_db
 
 postgres: &postgres
   adapter: postgresql
@@ -20,11 +21,11 @@ postgres: &postgres
   password: Codeboxx1!
   host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
   pool: 5
+  database: roc_elv_db_warehouse
 
 development:
   <<: *postgres
   <<: *mysql
- database: roc_elv_db
 
  production:
   <<: *postgres
