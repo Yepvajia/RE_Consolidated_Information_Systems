@@ -57,19 +57,35 @@ namespace :db_warehouse do
     end
 
     task show: :environment do
-        question1 = warehouse_db.exec("SELECT COUNT(contact_id), creation_date FROM fact_contact GROUP BY (creation_date)")
+        question1 = warehouse_db.exec("SELECT COUNT(contact_id), DATE_TRUNC('month',creation_date) AS month FROM fact_contact GROUP BY DATE_TRUNC('month',creation_date) ORDER BY DATE_TRUNC('month',creation_date) ASC")
         puts ""
-        puts "The number of unique requests (ContactId) grouped by Month"
+        puts "The number of unique contact requests grouped by Month"
         puts ""
+        fact_contact_year = question1.first["month"].to_s[0,4] 
+        puts "****FOR YEAR : #{fact_contact_year}****"
         question1.find_all do |q_1|
-            puts q_1
+            year = q_1["month"].to_s[0,4]
+            if fact_contact_year.to_i > year.to_i - 1
+                puts q_1
+            else
+                puts "****FOR YEAR : #{year.to_i } ****"
+                fact_contact_year = fact_contact_year.to_i + 1
+            end
         end
-        question2 = warehouse_db.exec("SELECT COUNT(quote_id), creation_date FROM fact_quote GROUP BY (creation_date)")
+        question2 = warehouse_db.exec("SELECT COUNT(quote_id), DATE_TRUNC('month',creation_date) AS month FROM fact_quote GROUP BY DATE_TRUNC('month',creation_date) ORDER BY DATE_TRUNC('month',creation_date) ASC")
         puts ""
-        puts "The number of unique requests (QuoteId) grouped by Month"
+        puts "The number of unique quote requests grouped by Month"
         puts ""
+        fact_quote_year = question2.first["month"].to_s[0,4] 
+        puts "****FOR YEAR : #{fact_quote_year}****"
         question2.find_all do |q_2|
-            puts q_2
+            year = q_2["month"].to_s[0,4]
+            if fact_quote_year.to_i > year.to_i - 1
+                puts q_2
+            else
+                puts "****FOR YEAR : #{year.to_i } ****"
+                fact_quote_year = fact_quote_year.to_i + 1
+            end
         end
         question3 = warehouse_db.exec("SELECT nb_elevators, company_main_contact_name FROM dim_customers")
         puts ""
