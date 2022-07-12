@@ -64,7 +64,7 @@ User.create!([{
   password: "juicejuice"
 }])
 
-40.times do
+4.times do
   User.create!(
     email: Faker::Internet.unique.email,
     password: "juicejuice")
@@ -147,7 +147,7 @@ Employee.create!([{
 Quote.destroy_all
 Quote.connection.execute('ALTER TABLE quotes AUTO_INCREMENT = 1')
 
-40.times do
+4.times do
   Quote.create!(
     building_type: type(),
     price: elevatorsModel(),
@@ -188,11 +188,11 @@ file = File.read('db/addresses.json')
 data = JSON.parse(file)
 # puts data
 
-40.times do |i|
+4.times do |i|
   address = data['addresses'][i]
   Address.create!(
     address_type: data['address_type'][rand(4)],
-    status: status(),
+    status: 'active',
     enity: data['enity'][rand(2)],
     num_street: address['address1'],
     apt_suite: address['address2'],
@@ -206,7 +206,7 @@ end
 Customer.destroy_all
 Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
 
-40.times do |i|
+4.times do |i|
   user = User.find(i+11)
   Customer.create!(
     user_id: i + 11,
@@ -226,7 +226,7 @@ end
 Building.destroy_all
 Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
 
-40.times do |i|
+4.times do |i|
   customer = Customer.find(i+1)
   Building.create!(
     customer_id: i + 1,
@@ -244,7 +244,7 @@ end
 BuildingDetail.destroy_all
 BuildingDetail.connection.execute('ALTER TABLE building_details AUTO_INCREMENT = 1')
 
-33.times do
+3.times do
   BuildingDetail.create!(
     building_id: buildingID(),
     key: Faker::Lorem.sentence(word_count: 1),
@@ -256,11 +256,11 @@ end
 Battery.destroy_all
 Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
-40.times do
+4.times do
   Battery.create!(
     building_id: buildingID(),
     building_type: type(),
-    status: status(),
+    status: 'active',
     employee_id: employeeId(),
     comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
@@ -274,12 +274,12 @@ end
 Column.destroy_all
 Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
-55.times do
+5.times do
   Column.create!(
     battery_id: batteryID(),
     building_type: type(),
     floors: floors(),
-    status: status(),
+    status: 'active',
     information: Faker::Lorem.sentence(word_count: 3),
     notes: Faker::Lorem.sentence(word_count: 5)
   )
@@ -289,20 +289,18 @@ end
 Elevator.destroy_all
 Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
-100.times do
+5.times do
   Elevator.create!(
     column_id: columnID() ,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     building_type: type(),
-    status: status(),
+    elevator_status: 'active',
     comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     certificate: Faker::Number.number(digits: 7),
     information: Faker::Lorem.sentence(word_count: 3),
     notes: Faker::Lorem.sentence(word_count: 5)
   )
-  
+
 end
-
-
