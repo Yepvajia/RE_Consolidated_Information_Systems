@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.string "serial_number"
     t.string "model"
     t.string "building_type"
-    t.string "status"
+    t.string "elevator_status"
     t.date "comm_date"
     t.date "inspec_date"
     t.integer "certificate"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.integer "number_of_elevators"
     t.integer "maximum_occupancy"
     t.integer "business_hours"
-    t.date "date", default: "2022-07-10"
+    t.date "date", default: "2022-07-12"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
