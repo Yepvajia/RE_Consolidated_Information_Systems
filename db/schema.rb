@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.string "city"
     t.string "postal_code"
     t.string "country"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -140,7 +142,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.integer "number_of_elevators"
     t.integer "maximum_occupancy"
     t.integer "business_hours"
-    t.date "date", default: "2022-07-10"
+    t.date "date", default: "2022-07-12"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

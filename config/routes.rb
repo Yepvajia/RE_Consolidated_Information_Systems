@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'maps/index'
   resources :quotes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
 Rails.application.routes.draw do
+  get 'maps/index'
   resources :quotes
   resources :employees
   devise_for :users

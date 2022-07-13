@@ -188,7 +188,7 @@ file = File.read('db/addresses.json')
 data = JSON.parse(file)
 # puts data
 
-40.times do |i|
+80.times do |i|
   address = data['addresses'][i]
   Address.create!(
     address_type: data['address_type'][rand(4)],
@@ -199,6 +199,8 @@ data = JSON.parse(file)
     city: address['city'],
     postal_code: address['postalCode'],
     country: 'US, ' + address['state'],
+    lat: address['coordinates']['lat'],
+    lng: address['coordinates']['lng'],
     notes: Faker::Lorem.paragraph
   )
 end
