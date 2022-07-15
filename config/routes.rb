@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get 'home/residential'
   get 'home/chart'
   post '/create_lead' => 'home#create_lead'
+  get 'dropbox/auth' => 'dropbox#auth'
+  get 'dropbox/auth_callback' => 'dropbox#auth_callback'
 end

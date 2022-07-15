@@ -11,8 +11,8 @@ def sendSms
       account_sid = ENV['TWILIO_ID']
       auth_token = ENV['TWILIO_PASS']
       @client = Twilio::REST::Client.new(account_sid, auth_token)
-        from: ENV['TWILIO_PHONE']
-        to: ENV['TECH_PHONE'] 
+        from = ENV['TWILIO_PHONE']
+        to = ENV['TECH_PHONE'] 
           message = @client.messages.create(
                body: 'Elevator needs attention!',
                from: from,
