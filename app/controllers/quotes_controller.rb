@@ -43,9 +43,7 @@ class QuotesController < ApplicationController
       user: "G2zgO8z0ExU1HQMOP5kr",                                                                            
       pass: "x",                                                                                                                    
       payload: quote_data,
-      headers: {
-        content_type: "application/json"
-      }
+      headers: {"Content-Type" => 'application/json'}
     )
     puts request_quote 
 
