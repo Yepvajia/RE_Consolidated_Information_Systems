@@ -131,6 +131,7 @@ GEM
       thor (>= 0.14.0, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    gmaps4rails (2.1.2)
     groupdate (6.1.0)
       activesupport (>= 5.2)
     haml (5.2.2)
@@ -343,6 +344,7 @@ DEPENDENCIES
   ed25519 (>= 1.2, < 2.0)
   faker
   figaro
+  gmaps4rails
   groupdate
   jbuilder (~> 2.5)
   jquery-rails

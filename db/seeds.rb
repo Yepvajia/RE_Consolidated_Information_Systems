@@ -64,7 +64,8 @@ User.create!([{
   password: "juicejuice"
 }])
 
-4.times do
+
+100.times do
   User.create!(
     email: Faker::Internet.unique.email,
     password: "juicejuice")
@@ -188,7 +189,8 @@ file = File.read('db/addresses.json')
 data = JSON.parse(file)
 # puts data
 
-4.times do |i|
+
+80.times do |i|
   address = data['addresses'][i]
   Address.create!(
     address_type: data['address_type'][rand(4)],
@@ -199,6 +201,8 @@ data = JSON.parse(file)
     city: address['city'],
     postal_code: address['postalCode'],
     country: 'US, ' + address['state'],
+    lat: address['coordinates']['lat'],
+    lng: address['coordinates']['lng'],
     notes: Faker::Lorem.paragraph
   )
 end
@@ -206,7 +210,8 @@ end
 Customer.destroy_all
 Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
 
-4.times do |i|
+
+Address.count.times do |i|
   user = User.find(i+11)
   Customer.create!(
     user_id: i + 11,
@@ -226,7 +231,8 @@ end
 Building.destroy_all
 Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
 
-4.times do |i|
+
+Address.count.times do |i|
   customer = Customer.find(i+1)
   Building.create!(
     customer_id: i + 1,
@@ -244,7 +250,8 @@ end
 BuildingDetail.destroy_all
 BuildingDetail.connection.execute('ALTER TABLE building_details AUTO_INCREMENT = 1')
 
-3.times do
+
+60.times do
   BuildingDetail.create!(
     building_id: buildingID(),
     key: Faker::Lorem.sentence(word_count: 1),
@@ -256,7 +263,8 @@ end
 Battery.destroy_all
 Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
-4.times do
+
+200.times do
   Battery.create!(
     building_id: buildingID(),
     building_type: type(),
@@ -274,7 +282,7 @@ end
 Column.destroy_all
 Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
-5.times do
+250.times do
   Column.create!(
     battery_id: batteryID(),
     building_type: type(),
@@ -289,7 +297,8 @@ end
 Elevator.destroy_all
 Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
-5.times do
+
+300.times do
   Elevator.create!(
     column_id: columnID() ,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,

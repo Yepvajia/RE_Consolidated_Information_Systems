@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.string "city"
     t.string "postal_code"
     t.string "country"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

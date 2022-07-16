@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'maps/index'
   resources :quotes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
 Rails.application.routes.draw do
+  get 'maps/index'
   resources :quotes
   resources :employees
   devise_for :users
@@ -12,5 +14,6 @@ Rails.application.routes.draw do
   get 'home/commercial'
   get 'home/residential'
   get 'home/chart'
+  get 'maps' => 'maps#index'
   post '/create_lead' => 'home#create_lead'
 end
