@@ -1,10 +1,13 @@
 RailsAdmin.config do |config|
-config.authorize_with do
-  redirect_to main_app.root_path unless warden.user.admin == 1
-  
-end
+  config.authorize_with do
+    redirect_to main_app.root_path unless warden.user.admin == 1
+    
+  end
+  config.navigation_static_label = "API"
+  config.navigation_static_links = {
+    'Google Maps' => 'maps/index'
+  }
   ### Popular gems integration
-
   #== Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user

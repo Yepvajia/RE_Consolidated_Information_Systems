@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "figaro"
 ruby '2.7.6'
+gem "figaro"
+gem 'gmaps4rails'
 # for grouping by date
 gem "groupdate"
 # for fake data
