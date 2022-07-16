@@ -168,7 +168,7 @@ end
 Lead.destroy_all
 Lead.connection.execute('ALTER TABLE leads AUTO_INCREMENT = 1')
 departments = ["Support", "HR", "Juice", "Elevator Heads", "IT"]
-100.times do
+4.times do
   Lead.create!(
     name: Faker::Name.unique.name.gsub(/\'/, ''),
     company_name: Faker::Company.unique.name.gsub(/\'/, ''),
@@ -304,7 +304,7 @@ Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     building_type: type(),
-    elevator_status: 'active',
+    elevator_status: ['active', 'inactive'].sample,
     comm_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     inspec_date: Faker::Date.between(from: '2019-01-23', to: '2022-06-25'),
     certificate: Faker::Number.number(digits: 7),
