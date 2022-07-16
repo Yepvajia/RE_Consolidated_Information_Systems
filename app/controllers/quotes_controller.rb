@@ -67,4 +67,35 @@ class QuotesController < ApplicationController
     def quote_params
       params.require(:quote).permit(:building_type, :price, :number_of_apartments, :number_of_companies, :number_of_corporations, :number_of_floors, :number_of_basements, :number_of_parking_spots, :number_of_elevators, :maximum_occupancy, :business_hours)
     end
+
+    # if @lead.save
+    #   puts 'listennnnn'
+    #   data = {
+    #     email: "#{@lead.email}", 
+    #     priority: 1, 
+    #     status: 2,
+    #     type: "Feature Reques",
+    #     subject: "#{@lead.name} from #{@lead.company_name}",
+    #     description: "The contact #{@lead.name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
+    #     #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
+    #     #{@lead.description}",
+    #   }.to_json
+    #   puts data
+    #   # puts 'hellooooooooooooo'
+    #   # data_json = JSON.generate(data)
+    #     # puts data_json
+    #     puts "look here"
+    #   request  = RestClient::Request.execute(
+    #     method: :post, 
+    #     url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
+    #     user: ENV['FRESHDESK_KEY'],
+    #     password: "x",
+    #     headers: {
+    #       content_type: "application/json"
+    #     },
+    #     payload: data
+    #   )
+    #   puts request 
+    #   end
+
 end

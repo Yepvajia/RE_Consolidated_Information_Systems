@@ -63,10 +63,9 @@ class HomeController < ApplicationController
       # params['message'],
       # params['file'],
       # params['date']
-      respond_to do |format|
         if @lead.save
           puts 'listennnnn'
-          contact_us = {
+          data = {
             email: "#{@lead.email}", 
             priority: 1, 
             status: 2,
@@ -76,21 +75,23 @@ class HomeController < ApplicationController
             #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
             #{@lead.description}",
           }.to_json
-            puts contact_us
+          puts data
+          # puts 'hellooooooooooooo'
+          # data_json = JSON.generate(data)
+            # puts data_json
             puts "look here"
           request  = RestClient::Request.execute(
             method: :post, 
-            url: 'https://rocketelevator-support.freshdesk.com',
+            url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
             user: ENV['FRESHDESK_KEY'],
             password: "x",
             headers: {
               content_type: "application/json"
             },
-            payload: contact_us
+            payload: data
           )
           puts request 
           end
-        end
   end
 
     # respond_to do |format|
