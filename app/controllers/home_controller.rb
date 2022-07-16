@@ -1,4 +1,6 @@
 require 'dropbox_api'
+require 'rest-client'
+require "json"
 
 class HomeController < ApplicationController
 
@@ -27,27 +29,24 @@ class HomeController < ApplicationController
 
     # puts 'LOOOK HERE'
     # pp @lead.file.blob.key
-    # blob = @lead.file.blob.download
-    puts 'START OF DROPBOX PROCESS'
-    if @lead.file.attached?
-      puts @lead.file.attached?
-      dbx = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
-      puts 'AUTHENTICATED'
-      filename_path = ActiveStorage::Blob.service.send(:path_for, @lead.file.key)
-      puts "YOOOOOOOOOOOO"
-      puts filename_path
-      new_filename = "#{@lead.company_name.parameterize}/#{@lead.file.filename.to_s}"
-      puts "HEEEEEEEEEEEEEEEEEEEY"
-      puts new_filename
-      file = dbx.upload(new_filename, 'https://www.dropbox.com/home/Apps/RocketElevatorFileHolder') # Accepts a String or File
-      puts 'FILES IN DROPBOX APP'
-    end
-    # file.open
-    # puts 'OPEN FILE PLEASE'
-    # file.class # => Dropbox::FileMetadata
-    # file.size # => 17
-    # file.rev # => a1c10ce0dd78
-
+    # blob = @lead.file.blob
+    # pp blob
+    # --------------------------------------------------#
+    # puts 'START OF DROPBOX PROCESS'
+    # if @lead.file.attached?
+    #   puts @lead.file.attached?
+    #   dbx = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
+    #   puts 'AUTHENTICATED'
+    #   filename_path = ActiveStorage::Blob.service.send(:path_for, @lead.file.key)
+    #   puts "YOOOOOOOOOOOO"
+    #   pp filename_path
+    #   new_filename = "#{@lead.company_name.parameterize}/#{@lead.file.filename.to_s}"
+    #   puts "HEEEEEEEEEEEEEEEEEEEY"
+    #   puts new_filename
+    #   file = dbx.upload(new_filename, 'https://www.dropbox.com/home/Apps/RocketElevatorFileHolder') # Accepts a String or File
+    #   puts 'FILES IN DROPBOX APP'
+    # end
+    #----------------------------------------------------#
     # insert_query = <<-SQL
     #   INSERT INTO leads (title, body, author, created_at)
     #   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -64,8 +63,62 @@ class HomeController < ApplicationController
       # params['message'],
       # params['file'],
       # params['date']
-
+      respond_to do |format|
+        if @lead.save
+          puts 'listennnnn'
+          contact_us = {
+            email: "#{@lead.email}", 
+            priority: 1, 
+            status: 2,
+            type: "Question",
+            subject: "#{@lead.name} from #{@lead.company_name}",
+            description: "The contact #{@lead.name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
+            #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
+            #{@lead.description}",
+          }.to_json
+            puts contact_us
+            puts "look here"
+          request  = RestClient::Request.execute(
+            method: :post, 
+            url: 'https://rocketelevator-support.freshdesk.com',
+            user: ENV['FRESHDESK_KEY'],
+            password: "x",
+            headers: {
+              content_type: "application/json"
+            },
+            payload: contact_us
+          )
+          puts request 
+          end
+        end
   end
+
+    # respond_to do |format|
+    #   if @lead.save
+    #     puts 'listennnnn'
+    #     contact_us = {
+    #       email: "#{@lead.email}", 
+    #       priority: 1, 
+    #       status: 2,
+    #       type: "Question",
+    #       subject: "#{@lead.full_name} from #{@lead.company_name}",
+    #       description: "The contact #{@lead.full_name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
+    #       #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
+    #       #{@lead.project_description}",
+    #     }.to_json
+    #       puts 'hellooooo'
+    #     contact_us_ticket = RestClient::Request.execute(
+    #       method: :post, 
+    #       url: 'rocketelevator-support.freshdesk.com',
+    #       user: ENV['FRESHDESK_KEY'],
+    #       password: "x",
+    #       headers: {
+    #         content_type: "application/json"
+    #       },
+    #       payload: contact_us
+    #     )
+    #     puts contact_us_ticket
+    #     end
 
 end
 

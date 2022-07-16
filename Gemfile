@@ -90,3 +90,7 @@ gem 'dropbox_api'
 gem 'dropbox-sdk-v2'
 
 gem "image_processing", ">= 1.2"
+
+gem 'rest-client', '~> 2.0', '>= 2.0.1'
+
+gem "freshdesk"
