@@ -2,30 +2,39 @@ namespace :juice do
   task test: :environment do
     total = 0
     total_elv = 0
-    40.times do |i|
+    Address.all.count.times do |i|
       address = Address.find(i+1)
       building = Building.where(address: address)
       batteries = Battery.where(building: building)
       columns_count = 0
+      floors_count = 0
       elevators_count = 0
       batteries.each do |battery|
         columns = Column.where(battery: battery)
         columns_count += columns.count
         total += columns.count
         columns.each do |column|
+          floors_count += column.floors
           elevators = Elevator.where(column: column)
           elevators_count += elevators.count
           total_elv += elevators.count
         end
       end
+      puts "Address For #{address.id}: " + "#{address.num_street}, #{address.city}, #{address.country}, #{address.postal_code}"
       puts "Num Bat For #{address.id}: " + batteries.count.to_s
       puts "Num Col For #{address.id}: " + columns_count.to_s
       puts "Num Elv For #{address.id}: " + elevators_count.to_s
+      puts "Num Floors For #{address.id}:" + floors_count.to_s
+      puts "Name For #{address.id}: " + building[0].customer.name
+      puts "Name Of Tech For #{address.id}: " + building[0].tech_name
       puts ""
 
       # puts address.building.batteries.columns.id
     end
-    puts total
-    puts total_elv
+  end
+
+  task test2: :environment do
+    file = Lead.find(102).file
+    pp file
   end
 end

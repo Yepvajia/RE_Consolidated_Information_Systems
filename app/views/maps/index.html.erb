@@ -16,28 +16,18 @@
     <br>
     <br>
     <br>
+    <br>
     <div class="container">
-      <h1>All Addresses</h1>
-      <%# <div id="map"></div> %>
-      <!--
-       The `defer` attribute causes the callback to execute after the full HTML
-       document has been parsed. For non-blocking uses, avoiding race conditions,
-       and consistent behavior across browsers, consider loading using Promises
-       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-      
-      <script
-        src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API']%>&callback=initMap&v=weekly"
-        async defer data-turbolinks-eval="false"
-      ></script>
-      -->
       <div style='width: 1000px;'>
-        <div id="map" style='width: 1000px; height: 600px;'></div>
+        <div id="map" style='width: 1000px; height: 550px;'></div>
       </div>
+      <h2>All Addresses</h1>
     </div>
     <script>
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {
-        center: {lat: 30.281084, lng: -85.9677169}
+        center: {lat: 40.00643165134336, lng: -102.05080059192993},
+        zoom: 4
       }, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);

@@ -31,10 +31,10 @@ def employeeId
   a = rand(Employee.count)
   return a + 1
 end
-# floors outputs a number from 1 to 80 taking 80 as an imaginary number of floors
+# floors outputs a number from 10 to 80 taking 80 as an imaginary number of floors
 def floors
   a = rand(80)
-  return a + 1
+  return a + 10
 end
 # this function creates the random number between 1 to 55 as there are 55 col
 def columnID
