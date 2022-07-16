@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.6'
 gem "figaro"
 gem 'gmaps4rails'
+gem 'sendgrid-ruby'
 # for grouping by date
 gem "groupdate"
 # for fake data
