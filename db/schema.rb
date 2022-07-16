@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_185041) do
     t.string "serial_number"
     t.string "model"
     t.string "building_type"
-    t.string "status"
+    t.string "elevator_status"
     t.date "comm_date"
     t.date "inspec_date"
     t.integer "certificate"

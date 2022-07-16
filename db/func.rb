@@ -21,11 +21,11 @@ def type
 end
 
 # status outputs a status 
-def status
-  array = ["Working_condition","needs_replacement","needs_to_be_inspected"]
-  a = rand(3)
-return array[a]
-end
+# def status
+#   array = ["Working_condition","needs_replacement","needs_to_be_inspected"]
+#   a = rand(3)
+# return array[a]
+# end
 # employee id outputs a random number from 1 to 10 as thats the number on employee the company has
 def employeeId
   a = rand(Employee.count)
