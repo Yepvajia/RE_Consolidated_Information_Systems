@@ -1,3 +1,6 @@
+require 'rest-client'
+require "json"
+
 class QuotesController < ApplicationController
   before_action :set_quote, only: %i[ show edit update destroy ]
 
@@ -25,12 +28,36 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
+        quote_form = {
+          email: "#{@quote.price}", 
+          priority: 1, 
+          status: 2,
+          type: "Feature Request",
+          subject: "From #{@quote.building_type}",
+          description: "Company #{@quote.building_type} with price  #{@quote.price}. 
+          #{@quote.building_type} of this many needed #{@quote.number_of_elevators}.",
+        }.to_json
+    
+        quote_ticket = RestClient::Request.execute(
+          method: :post, 
+          url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
+          user: ENV["FRESHDESK_KEY"],
+          password: "x",
+          headers: {
+            content_type: "application/json"
+          },
+          payload: quote_form
+        )
+        puts quote_ticket
+
+      if @quote.save
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
         format.json { render :show, status: :created, location: @quote }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
+    end
     end
   end
 
