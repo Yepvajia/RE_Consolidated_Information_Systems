@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  get 'polly/index', to: "polly#convert"
   get 'maps/index'
   resources :quotes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
   get 'maps/index'
   resources :quotes
   resources :employees
+  resources :polly
   devise_for :users
   root 'home#index'
   get 'home/backOffice'
