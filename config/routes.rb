@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'polly/index', to: "polly#convert"
   get 'maps/index'
   resources :quotes
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
 Rails.application.routes.draw do
   get 'maps/index'

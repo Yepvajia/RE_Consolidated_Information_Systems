@@ -34,20 +34,6 @@ class Elevator < ApplicationRecord
       end
       notifier.ping "Hello Boss and bosses, the elevator #{self.id} with Serial Number #{self.serial_number} changed
       status from #{self.elevator_status_was} to #{self.elevator_status}"
-def sendSms
-  if self.elevator_status_changed?
-    if self.elevator_status == 'intervention'
-      account_sid = ENV['TWILIO_ID']
-      auth_token = ENV['TWILIO_PASS']
-      @client = Twilio::REST::Client.new(account_sid, auth_token)
-        from = ENV['TWILIO_PHONE']
-        to = ENV['TECH_PHONE'] 
-          message = @client.messages.create(
-               body: 'Elevator needs attention!',
-               from: from,
-               to: to
-               )
     end
   end
-
 end
