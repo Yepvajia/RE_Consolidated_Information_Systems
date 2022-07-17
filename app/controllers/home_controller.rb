@@ -65,63 +65,39 @@ class HomeController < ApplicationController
       # params['message'],
       # params['file'],
       # params['date']
-        if @lead.save
-          puts 'listennnnn'
-          data = {
-            email: "#{@lead.email}", 
-            priority: 1, 
-            status: 2,
-            type: "Question",
-            subject: "#{@lead.name} from #{@lead.company_name}",
-            description: "The contact #{@lead.name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
-            #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
-            #{@lead.description}",
-          }.to_json
-          puts data
-          # puts 'hellooooooooooooo'
-          # data_json = JSON.generate(data)
-            # puts data_json
-            puts "look here"
-          request  = RestClient::Request.execute(
-            method: :post, 
-            url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
-            user: ENV['FRESHDESK_KEY'],
-            password: "x",
-            headers: {
-              content_type: "application/json"
-            },
-            payload: data
-          )
-          puts request 
-          end
+
+
+
+
+        # if @lead.save
+        #   puts 'listennnnn'
+        #   data = {
+        #     email: "#{@lead.email}", 
+        #     priority: 1, 
+        #     status: 2,
+        #     type: "Question",
+        #     subject: "#{@lead.name} from #{@lead.company_name}",
+        #     description: "The contact #{@lead.name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
+        #     #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
+        #     #{@lead.description}",
+        #   }.to_json
+        #   puts data
+        #   # puts 'hellooooooooooooo'
+        #   # data_json = JSON.generate(data)
+        #     # puts data_json
+        #     puts "look here"
+        #   request  = RestClient::Request.execute(
+        #     method: :post, 
+        #     url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
+        #     user: ENV['FRESHDESK_KEY'],
+        #     password: "x",
+        #     headers: {
+        #       content_type: "application/json"
+        #     },
+        #     payload: data
+        #   )
+        #   puts request 
+        #   end
   end
-
-    # respond_to do |format|
-    #   if @lead.save
-    #     puts 'listennnnn'
-    #     contact_us = {
-    #       email: "#{@lead.email}", 
-    #       priority: 1, 
-    #       status: 2,
-    #       type: "Question",
-    #       subject: "#{@lead.full_name} from #{@lead.company_name}",
-    #       description: "The contact #{@lead.full_name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
-    #       #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
-    #       #{@lead.project_description}",
-    #     }.to_json
-    #       puts 'hellooooo'
-    #     contact_us_ticket = RestClient::Request.execute(
-    #       method: :post, 
-    #       url: 'rocketelevator-support.freshdesk.com',
-    #       user: ENV['FRESHDESK_KEY'],
-    #       password: "x",
-    #       headers: {
-    #         content_type: "application/json"
-    #       },
-    #       payload: contact_us
-    #     )
-    #     puts contact_us_ticket
-    #     end
-
 end
 

@@ -1,3 +1,6 @@
+require 'rest-client'
+require "json"
+
 class QuotesController < ApplicationController
   before_action :set_quote, only: %i[ show edit update destroy ]
 
@@ -23,31 +26,30 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new(quote_params)
 
-    puts 'listennnnn'
-    quote_data = {
-      email: "#{@quote.price}",
-      priority: 1,
-      status: 2,
-      type: "Feature Request",
-      subject: "#{@quote.number_of_companies}",
-      description: "building type: #{@quote.building_type}, " + " number of appartment: #{@quote.number_of_apartments}, " + " number of floor: #{@quote.number_of_floors}, " + " number of elevator: #{@quote.number_of_elevators}, " + " message: #{@quote.business_hours}",
-    }.to_json
-    puts quote_data
-    # puts 'hellooooooooooooo'
-    # data_json = JSON.generate(data)
-      # puts data_json
-      puts "look here"
-    request_quote  = RestClient::Request.execute(
-      method: :post,
-      url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
-      user: "G2zgO8z0ExU1HQMOP5kr",                                                                            
-      pass: "x",                                                                                                                    
-      payload: quote_data,
-      headers: {"Content-Type" => 'application/json'}
-    )
-    puts request_quote 
-
     respond_to do |format|
+      if @quote.save
+        quote_form = {
+          email: "#{@quote.price}", 
+          priority: 1, 
+          status: 2,
+          type: "Feature Request",
+          subject: "From #{@quote.building_type}",
+          description: "Company #{@quote.building_type} with price  #{@quote.price}. 
+          #{@quote.building_type} of this many needed #{@quote.number_of_elevators}.",
+        }.to_json
+    
+        quote_ticket = RestClient::Request.execute(
+          method: :post, 
+          url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
+          user: ENV["FRESHDESK_KEY"],
+          password: "x",
+          headers: {
+            content_type: "application/json"
+          },
+          payload: quote_form
+        )
+        puts quote_ticket
+
       if @quote.save
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
         format.json { render :show, status: :created, location: @quote }
@@ -55,6 +57,7 @@ class QuotesController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
+    end
     end
   end
 
