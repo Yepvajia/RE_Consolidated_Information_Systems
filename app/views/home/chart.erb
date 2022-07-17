@@ -11,9 +11,9 @@
     nb_elevators = 0
         customer = Customer.find(customer_id)
             customer.buildings.each do |building|
-                building.battery.each do |battery|
-                    battery.column.each do |column|
-                        column.elevator.each do |elevator|
+                building.batteries.each do |battery|
+                    battery.columns.each do |column|
+                        column.elevators.each do |elevator|
                             nb_elevators += 1
                         end
                     end
