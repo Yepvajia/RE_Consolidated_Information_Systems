@@ -3,13 +3,15 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless warden.user.admin == 1
   end
   config.navigation_static_label = "API"
-  config.navigation_static_links={'Google Maps' => 'maps/index', 'Pollygo' => 'polly/index'}
+  config.navigation_static_links={
+    'Google Maps' => '/maps/index',
+     'Pollygo' => '/polly/index'}
   ### Popular gems integration
   #== Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
-  config.current_user_method(&:current_user)
+  # config.current_user_method(&:current_user)
 
   ## == CancanCan ==
   # config.authorize_with :cancancan
