@@ -148,7 +148,7 @@ Employee.create!([{
 Quote.destroy_all
 Quote.connection.execute('ALTER TABLE quotes AUTO_INCREMENT = 1')
 
-4.times do
+80.times do
   Quote.create!(
     building_type: type(),
     price: elevatorsModel(),
@@ -168,7 +168,7 @@ end
 Lead.destroy_all
 Lead.connection.execute('ALTER TABLE leads AUTO_INCREMENT = 1')
 departments = ["Support", "HR", "Juice", "Elevator Heads", "IT"]
-4.times do
+80.times do
   Lead.create!(
     name: Faker::Name.unique.name.gsub(/\'/, ''),
     company_name: Faker::Company.unique.name.gsub(/\'/, ''),
