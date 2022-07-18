@@ -29,8 +29,35 @@ class HomeController < ApplicationController
     if @lead.save
       send_mail(@params_email)
       redirect_to root_path, notice: "Contact successfully submitted."
+      data = {
+        email: "#{@lead.email}", 
+        priority: 1, 
+        status: 2,
+        type: "Question",
+        subject: "#{@lead.name} from #{@lead.company_name}",
+        description: "The contact #{@lead.name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
+        #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
+        #{@lead.description}",
+      }.to_json
+      request  = RestClient::Request.execute(
+        method: :post, 
+        url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
+        user: ENV['FRESHDESK_KEY'],
+        password: "x",
+        headers: {
+          content_type: "application/json"
+        },
+        payload: data
+      )
     else
       render plain: @lead.errors.full_messages
+    end
+    
+    if @lead.file.attached?
+      dbx = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
+      filename_path = ActiveStorage::Blob.service.send(:path_for, @lead.file.key)
+      new_filename = "#{@lead.company_name.parameterize}/#{@lead.file.filename.to_s}"
+      file = dbx.upload(new_filename, 'https://www.dropbox.com/home/Apps/RocketElevatorFileHolder') # Accepts a String or File
     end
   end
 
@@ -59,59 +86,11 @@ class HomeController < ApplicationController
     mail = SendGrid::Mail.new(from, subject, to, content)
 
 
-
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)
     puts response.status_code
     puts response.body
     puts response.headers
-
-    # --------------------------------------------------#
-    if @lead.file.attached?
-      dbx = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
-      filename_path = ActiveStorage::Blob.service.send(:path_for, @lead.file.key)
-      new_filename = "#{@lead.company_name.parameterize}/#{@lead.file.filename.to_s}"
-      file = dbx.upload(new_filename, 'https://www.dropbox.com/home/Apps/RocketElevatorFileHolder') # Accepts a String or File
-    end
-    #----------------------------------------------------#
-    # insert_query = <<-SQL
-    #   INSERT INTO leads (title, body, author, created_at)
-    #   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    # SQL
-
-    # connection.execute insert_query,
-      # params['name'],
-      # params['company_name'],
-      # params['email'],
-      # params['phone'],
-      # params['project_name'],
-      # params['description'],
-      # params['department'],
-      # params['message'],
-      # params['file'],
-      # params['date']
-        if @lead.save
-          data = {
-            email: "#{@lead.email}", 
-            priority: 1, 
-            status: 2,
-            type: "Question",
-            subject: "#{@lead.name} from #{@lead.company_name}",
-            description: "The contact #{@lead.name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. 
-            #{@lead.department} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators. 
-            #{@lead.description}",
-          }.to_json
-          request  = RestClient::Request.execute(
-            method: :post, 
-            url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
-            user: ENV['FRESHDESK_KEY'],
-            password: "x",
-            headers: {
-              content_type: "application/json"
-            },
-            payload: data
-          )
-          end
   end
 end
 
