@@ -28,7 +28,7 @@ class QuotesController < ApplicationController
     respond_to do |format|
       if @quote.save
         quote_form = {
-          email: "#{@quote.price}", 
+          email: @quote.price, 
           priority: 1, 
           status: 2,
           type: "Feature Request",
