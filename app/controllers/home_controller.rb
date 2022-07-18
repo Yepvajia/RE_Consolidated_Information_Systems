@@ -39,8 +39,8 @@ class HomeController < ApplicationController
     name = params_email['name']
     project_name = params_email['project_name']
 
-    from = Email.new(email: 'sevada.rostomian@gmail.com')
-    to = Email.new(email: email)
+    from = SendGrid::Email.new(email: 'sevada.rostomian@gmail.com')
+    to = SendGrid::Email.new(email: email)
     subject = 'Response to contact.'
     content = Content.new(type: 'text/html', value: 'Greetings ' + name +
       ',<br>
@@ -57,7 +57,7 @@ class HomeController < ApplicationController
       <br>
       <br>
       <img src="https://i.imgur.com/M5G13C8.png" width="200">')
-    mail = Mail.new(from, subject, to, content)
+    mail = SendGrid::Mail.new(from, subject, to, content)
 
 
 

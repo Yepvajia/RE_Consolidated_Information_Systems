@@ -44,11 +44,11 @@ namespace :juice do
 require 'sendgrid-ruby'
 include SendGrid
   task test3: :environment do
-    from = Email.new(email: 'sevada.rostomian@gmail.com')
-    to = Email.new(email: 'sevada.rostomian@gmail.com')
+    from = SendGrid::Email.new(email: 'sevada.rostomian@gmail.com')
+    to = SendGrid::Email.new(email: 'sevada.rostomian@gmail.com')
     subject = 'Sending with SendGrid is Fun'
     content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-    mail = Mail.new(from, subject, to, content)
+    mail = SendGrid::Mail.new(from, subject, to, content)
     attachments.inline["logo.png"] = File.read("#{Rails.root}app/assets/images/R4.png")
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
