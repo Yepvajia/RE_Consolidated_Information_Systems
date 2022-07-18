@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     name = params_email['name']
     project_name = params_email['project_name']
 
-    from = Email.new(email: 'sevada.rostomian@gmail.com')
+    from = Email.new(email: 'matmansilla1992@gmail.com')
     to = Email.new(email: email)
     subject = 'Response to contact.'
     content = Content.new(type: 'text/html', value: 'Greetings ' + name +

@@ -28,7 +28,7 @@ class QuotesController < ApplicationController
     respond_to do |format|
       if @quote.save
         quote_form = {
-          email: @quote.price, 
+          email: "rocket_elevator_client@test.com", 
           priority: 1, 
           status: 2,
           type: "Feature Request",
@@ -42,7 +42,6 @@ class QuotesController < ApplicationController
           user: ENV['FRESHDESK_KEY'],
           password: "x",
           headers: {
-            accept: 'application/json',
             content_type: "application/json"
           },
           payload: quote_form
