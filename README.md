@@ -1,63 +1,68 @@
 ROCKET ELEVATOR 7 API!
 
-    * API 1 = GMAP
+    API 1 = GMAP
 
-    * API 2 = SENDGRID
+    API 2 = SENDGRID
 
-    * API 3 = AWS POLLY
+    API 3 = AWS POLLY
 
-    * API 4 = SLACK NOTIFIER
+    API 4 = SLACK NOTIFIER
 
-    * API 5 = FRESHDESK
+    API 5 = FRESHDESK
 
-    * API 6 = DROPBOX
+    API 6 = DROPBOX
 
-    * API 7 = TWILIO
+    API 7 = TWILIO
 
 PROGRAMS NEEDED TO TEST:    
     
-    * RUBY VERSION 2.7.6
+    RUBY VERSION 2.7.6
 
-    * RAILS 5.2.7
+    RAILS 5.2.7
 
-    * UBUNTU 20.4
+    UBUNTU 20.4
 
-THESE ARE THE GEMS NEEDED
+THESE ARE THE GEMS NEEDED:
 
-    * GMAP = gmaps4rails
+    GMAP = gmaps4rails
 
-    * SENDGRID = sendgrid-ruby
+    SENDGRID = sendgrid-ruby
 
-    * AWS POLLY = aws-sdk-polly
+    AWS POLLY = aws-sdk-polly
 
-    * SLACK NOTIFIER = slack-notifie
+    SLACK NOTIFIER = slack-notifie
 
-    * FRESHDESK = rest-client 
+    FRESHDESK = rest-client 
 
-    * DROPBOX = dropbox_api
+    DROPBOX = dropbox_api
 
-    * TWILIO = twilio-ruby
+    TWILIO = twilio-ruby
 
-###After adding these gems in your Gemfile please run INSTALL BUNDLE in your Ubuntu terminal :)
+After adding these gems in your Gemfile please run INSTALL BUNDLE in your Ubuntu terminal :)
+
+TO TEST SLACK NOTIFIER AND TWILIO:
+    
+    PLEASE LOG INTO YOUR ADMIN ACCOUNT GO TO THE ADMIN PANEL, CLICK ON ELEVATOR AND EDIT ELEVATOR_STATUS TO "INTERVENTION".
+
+TO TEST AWS POLLY:
+
+    PLEASE LOG INTO YOUR ADMIN ACCOUNT, GO TO THE ADMIN PANEL AND CLICK ON THE POLLY GO API BOTTOM LEFT. WHEN YOU CLICK ON THE LINK IT WILL OPEN A NEW PAGE WHERE YOU CAN LISTEN TO THE BRIEFING OF THE CURRENT SITUATION. PLEASE LISTEN CAREFULLY!
+
+TO TEST FRESHDESK:
+
+    SUBMIT A CONTACT FORM OR A QUOTE FORM, THEN GO TO FRESHDESK LOG IN WITH YOUR CODEBOXX EMAIL AND GO TO TICKETS ON THE LEFT PANEL.
+
+TO TEST DROPBOX:
+
+    DROP A FILE IN THE CONTACT US FORM AND GO TO DROPBOX.COM AND PLEASE CONTACT MATIAS MANSILLA FOR LOG IN INFO SINCE IT USE SENSITVE INFORMATION :(.
+
+TO TEST SENDGRID: 
+
+    WHEN YOU SUBMIT A CONTACT FORM, AN EMAIL WILL BE SENT TO THE EMAIL PROVIDED THANKING YOU.
+
+TO TEST GMAP:
+
+    ONCE LOGGED IN THE ADMIN PANEL CLICK ON THE GOOGLE MAPS ON YOUR LEFT DASHBOARD TO SEE A NICE GOOGLE MAP REPRESENTATION OF ALL OUR CLIENTEL.
 
 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
