@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.6'
+gem "figaro"
+gem 'gmaps4rails'
+gem 'sendgrid-ruby'
 # for grouping by date
 gem "groupdate"
 # for fake data
@@ -81,3 +84,16 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'slack-notifier'
+gem 'aws-sdk-polly'
+gem 'twilio-ruby'
+
+gem 'dropbox_api'
+
+gem 'dropbox-sdk-v2'
+
+gem "image_processing", ">= 1.2"
+
+gem 'rest-client', '~> 2.0', '>= 2.0.1'
+
+gem "freshdesk"

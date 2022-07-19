@@ -1,15 +1,17 @@
 RailsAdmin.config do |config|
-config.authorize_with do
-  redirect_to main_app.root_path unless warden.user.admin == 1
-  
-end
+  config.authorize_with do
+    redirect_to main_app.root_path unless warden.user.admin == 1
+  end
+  config.navigation_static_label = "API"
+  config.navigation_static_links={
+    'Google Maps' => '/maps/index',
+     'Pollygo' => '/polly/index'}
   ### Popular gems integration
-
   #== Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
-  config.current_user_method(&:current_user)
+  # config.current_user_method(&:current_user)
 
   ## == CancanCan ==
   # config.authorize_with :cancancan
@@ -40,5 +42,5 @@ end
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+    end
   end
-end

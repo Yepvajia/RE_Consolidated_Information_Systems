@@ -7,26 +7,33 @@
 
 mysql: &mysql
   adapter: mysql2
-  encoding: utf8
-  username: codeboxx
-  password: Codeboxx1!
-  host: codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com
-  port: 3306
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
   database: roc_elv_db
+  username: root
+  password: <%= ENV['MYSQL_PASS'] %>
+  host: localhost
 
 postgres: &postgres
   adapter: postgresql
-  encoding: unicode
-  username: codeboxx
-  password: Codeboxx1!
-  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
   database: roc_elv_db_warehouse
+  username: matias
+  password: <%= ENV['MYSQL_PASS'] %>
+  host: localhost
 
 development:
   <<: *postgres
   <<: *mysql
 
- production:
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+# test:
+#   <<: *postgres
+#   <<: *mysql
+
+production:
   <<: *postgres
   <<: *mysql
