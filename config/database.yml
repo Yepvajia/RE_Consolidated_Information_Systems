@@ -19,8 +19,8 @@ postgres: &postgres
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   database: roc_elv_db_warehouse
-  username: matias
-  password: <%= ENV['MYSQL_PASS'] %>
+  username: <%= ENV['PSQL_USER'] %>
+  password: <%= ENV['PSQL_PASS'] %>
   host: localhost
 
 development:

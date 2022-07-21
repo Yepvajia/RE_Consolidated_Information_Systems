@@ -5,11 +5,12 @@ require 'faker'
 
 namespace :db_warehouse do
     
-    warehouse_db = PG.connect( host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", dbname: 'roc_elv_db_warehouse', :user => 'codeboxx', :password => 'Codeboxx1!' )
+    # warehouse_db = PG.connect( host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", dbname: 'roc_elv_db_warehouse', :user => 'codeboxx', :password => 'Codeboxx1!' )
+    warehouse_db = PG.connect :dbname => 'roc_elv_db_warehouse'
 
     task reset: :environment do
         Rake::Task["db_warehouse:create_warehouse_table"].invoke
-        Rake::Task["db_warehouse:insert_data"].invoke
+        Rake::Task["db_warehouse:seed"].invoke
         Rake::Task["db_warehouse:show"].invoke
     end
 
@@ -25,9 +26,12 @@ namespace :db_warehouse do
     
         warehouse_db.exec "DROP TABLE IF EXISTS dim_customers"
         warehouse_db.exec("CREATE TABLE dim_customers(creation_date VARCHAR(225),company_name TEXT,company_main_contact_name VARCHAR(225),company_main_contact_email VARCHAR(225),nb_elevators INTEGER,customer_city VARCHAR(225))")
+        
+        warehouse_db.exec "DROP TABLE IF EXISTS fact_intervention"
+        warehouse_db.exec("CREATE TABLE fact_intervention(employee_id INTEGER, building_id INTEGER, battery_id INTEGER[], column_id INTEGER[], elevator_id INTEGER[], start_date VARCHAR(225), end_date VARCHAR(225), result VARCHAR(225), report VARCHAR(225), status VARCHAR(225))")
     end
 
-    task insert_data: :environment do
+    task seed: :environment do
         #    insert data to fact_quote
         var = 1
         Quote.find_each do |q|
@@ -53,6 +57,28 @@ namespace :db_warehouse do
         Customer.find_each do |c|
             var = rand(30)
             warehouse_db.exec("INSERT INTO dim_customers(creation_date,company_name,company_main_contact_name,company_main_contact_email,nb_elevators,customer_city) VALUES ('#{c.creation_date}','#{c.company_name}','#{c.auth_name}','#{c.mangr_email}',#{var},'#{Faker::Address.city.gsub(/\'/, '')}}')")
+        end
+
+        80.times do |i|
+            e_id = rand(Employee.count)+1
+            b_id = rand(Building.count)+1
+            # e_id = i+1
+            # b_id = i+1
+            bat_id = Battery.where(building_id: b_id).map{|battery| battery.id} 
+            col_id = Column.where(battery_id: bat_id).map{|column| column.id}
+            elv_id = Elevator.where(column_id: col_id).map{|elevator| elevator.id}
+            bat_id = bat_id.empty? ? 'NULL' : "ARRAY #{bat_id}"
+            col_id = col_id.empty? ? 'NULL' : "ARRAY #{col_id}"
+            elv_id = elv_id.empty? ? 'NULL' : "ARRAY #{elv_id}" 
+            # pp "NEW BUILDING #{b_id}"
+            # pp bat_id
+            # pp col_id
+            # pp elv_id
+            result = ['Success', 'Failure', 'Incomplete'].sample
+            # status = ['Pending', 'InProgress', 'Interrupted', 'Resumed', 'Complete'].sample
+            status = ['Complete'].sample
+            
+            warehouse_db.exec("INSERT INTO fact_intervention(employee_id, building_id, battery_id, column_id, elevator_id, start_date, end_date, result, report, status) VALUES ('#{e_id}', '#{b_id}', #{bat_id}, #{col_id}, #{elv_id}, '#{Faker::Date.between(from: 1.year.ago, to: Date.today)}', '#{Faker::Date.between(from: Date.today, to: 1.year.from_now)}', '#{result}', '#{Faker::Lorem.paragraph}', '#{status}')")
         end
     end
 
