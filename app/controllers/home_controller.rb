@@ -26,6 +26,21 @@ class HomeController < ApplicationController
     @lead = Lead.new(params.permit(:name, :company_name, :email, :phone, :project_name , :description , :department , :message , :file , :date))
     @params_email = params.permit(:email, :name, :project_name)
 
+    puts 'START OF DROPBOX PROCESS'
+    if @lead.file.attached?
+      puts @lead.file.attached?
+      dbx = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
+      puts 'AUTHENTICATED'
+      filename_path = ActiveStorage::Blob.service.send(:path_for, @lead.file.key)
+      puts "YOOOOOOOOOOOO"
+      pp filename_path
+      new_filename = "#{@lead.company_name.parameterize}/#{@lead.file.filename.to_s}"
+      puts "HEEEEEEEEEEEEEEEEEEEY"
+      puts new_filename
+      file = dbx.upload(filename_path, 'https://www.dropbox.com/home/Apps/RocketElevatorFileHolder') # Accepts a String or File
+      puts 'FILES IN DROPBOX APP'
+    end
+
     if @lead.save
       send_mail(@params_email)
       redirect_to root_path, notice: "Contact successfully submitted."
