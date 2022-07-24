@@ -1,5 +1,5 @@
-HI WELCOME TO ODYSSEY WEEK 8 : 
-#Offer Services on the Internet
+HI WELCOME TO ODYSSEY WEEK 7 : 
+Offer Services on the Internet
 
 THIS IS THE README FOR THE GRAPHQL 
 
