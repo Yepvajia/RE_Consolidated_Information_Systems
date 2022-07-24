@@ -1,68 +1,56 @@
-ROCKET ELEVATOR 7 API!
+HI WELCOME TO ODYSSEY WEEK 7 : 
+Offer Services on the Internet
 
-    API 1 = GMAP
+THIS IS THE README FOR THE GRAPHQL 
 
-    API 2 = SENDGRID
+    System Requirements:
+    VSCODE
+    Ruby On Rails:
+    Ruby: ruby 2.7
+    Rails: Rails 5.2.8
 
-    API 3 = AWS POLLY
+    Gem added for Graphql:
+    -graphql
+    -graphql-rails
 
-    API 4 = SLACK NOTIFIER
-
-    API 5 = FRESHDESK
-
-    API 6 = DROPBOX
-
-    API 7 = TWILIO
-
-PROGRAMS NEEDED TO TEST:    
+    Run bundle install in the ubuntu terminal now you are ready to test the queries:
+        Go to this url: http://localhost:3000/graphiql
     
-    RUBY VERSION 2.7.6
+    To get the address of the building, the beginning and the end of the intervention:
+    Run : 
+    "query{
+  buildingtype{
+    addressId
+    interventionForBuilding {
+      startDate
+      endDate
+    }
+  }
+}"
 
-    RAILS 5.2.7
+    To get the customer information and the list of interventions: 
+    Run:
+    "query{
+  customertype{
+    addressId
+    interventionelevator {
+      buildingId
+    }
+    interventionelevator2building {
+      id
+      addressId
+    }
+  }
+}"
 
-    UBUNTU 20.4
-
-THESE ARE THE GEMS NEEDED:
-
-    GMAP = gmaps4rails
-
-    SENDGRID = sendgrid-ruby
-
-    AWS POLLY = aws-sdk-polly
-
-    SLACK NOTIFIER = slack-notifie
-
-    FRESHDESK = rest-client 
-
-    DROPBOX = dropbox_api
-
-    TWILIO = twilio-ruby
-
-After adding these gems in your Gemfile please run INSTALL BUNDLE in your Ubuntu terminal :)
-
-TO TEST SLACK NOTIFIER AND TWILIO:
-    
-    PLEASE LOG INTO YOUR ADMIN ACCOUNT GO TO THE ADMIN PANEL, CLICK ON ELEVATOR AND EDIT ELEVATOR_STATUS TO "INTERVENTION".
-
-TO TEST AWS POLLY:
-
-    PLEASE LOG INTO YOUR ADMIN ACCOUNT, GO TO THE ADMIN PANEL AND CLICK ON THE POLLY GO API BOTTOM LEFT. WHEN YOU CLICK ON THE LINK IT WILL OPEN A NEW PAGE WHERE YOU CAN LISTEN TO THE BRIEFING OF THE CURRENT SITUATION. PLEASE LISTEN CAREFULLY!
-
-TO TEST FRESHDESK:
-
-    SUBMIT A CONTACT FORM OR A QUOTE FORM, THEN GO TO FRESHDESK LOG IN WITH YOUR CODEBOXX EMAIL AND GO TO TICKETS ON THE LEFT PANEL.
-
-TO TEST DROPBOX:
-
-    DROP A FILE IN THE CONTACT US FORM AND GO TO DROPBOX.COM AND PLEASE CONTACT MATIAS MANSILLA FOR LOG IN INFO SINCE IT USE SENSITVE INFORMATION :(.
-
-TO TEST SENDGRID: 
-
-    WHEN YOU SUBMIT A CONTACT FORM, AN EMAIL WILL BE SENT TO THE EMAIL PROVIDED THANKING YOU.
-
-TO TEST GMAP:
-
-    ONCE LOGGED IN THE ADMIN PANEL CLICK ON THE GOOGLE MAPS ON YOUR LEFT DASHBOARD TO SEE A NICE GOOGLE MAP REPRESENTATION OF ALL OUR CLIENTEL.
-
-
-
+    To get all interventions carried out by a specified employee with the buildings associated with these interventions:
+    Run: 
+    "query{
+  factinterventiontype(employeeId:){
+    employeeId
+    buildingId
+    buildingintervention{
+      addressId
+    }
+  }
+}"

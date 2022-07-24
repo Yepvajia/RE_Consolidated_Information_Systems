@@ -10,7 +10,7 @@ mysql: &mysql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   database: roc_elv_db
-  username: root
+  username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_PASS'] %>
   host: localhost
 
