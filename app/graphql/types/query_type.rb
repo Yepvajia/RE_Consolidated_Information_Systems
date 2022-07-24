@@ -1,5 +1,7 @@
 module Types
   class QueryType < Types::BaseObject
+    implements  GraphQL::Types::Relay::Node
+
     
       # Add root-level fields here.
      # They will be entry points for queries on your schema.
@@ -11,22 +13,25 @@ module Types
         "Hello World!"
       end
 
-      field :factinterventiontype, [Types::FactInterventionType], null: false, description: "fact_intervention" 
+      field :factinterventiontype, [Types::FactInterventionType], null: false do
+        argument :employee_id, Integer, required: false
+      end
 
-      def factinterventiontype
-        FactIntervention.all
+      def factinterventiontype(employee_id:)
+        FactIntervention.where(employee_id: "5")
       end
 
       field :buildingtype, [Types::BuildingType], null: false, description: "building table"
 
       def buildingtype
-        Building.all
+        Building.where(address_id: "1")
       end
 
       field :customertype, [Types::CustomerType], null: false, description: "customer table"
 
       def customertype
-        Customer.all
+        Customer.where(id: "1", address_id: "1")
       end
+      
   end
 end

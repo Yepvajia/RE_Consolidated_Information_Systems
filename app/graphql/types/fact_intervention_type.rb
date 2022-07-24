@@ -1,5 +1,7 @@
 module Types
-    class FactInterventionType < Types::BaseObject
+    class FactInterventionType < GraphQL::Schema::Object
+        implements GraphQL::Types::Relay::Node
+
         field :id, ID, null: false
         field :employee_id, Integer, null: false
         field :building_id, Integer, null: false
@@ -15,13 +17,14 @@ module Types
         field :buildingaddress,[Types::BuildingType], null: false
 
         def buildingaddress
-            return Building.where(address_id: 5)
+            # var addressId = Building.find(:id)
+            return Building.where(address_id: 1)
         end
 
         field :buildingintervention, [Types::BuildingType], null: false
 
         def buildingintervention
-            Building.where(id: BuildingType)
+            return Building.where(id: "1")
         end
         
         # field :customeridforintervention, [Types]
