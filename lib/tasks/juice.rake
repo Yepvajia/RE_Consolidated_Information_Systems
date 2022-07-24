@@ -57,4 +57,13 @@ include SendGrid
     puts response.body
     puts response.headers
   end
+
+    task test4: :environment do
+    conn = PG.connect( dbname: 'roc_elv_db_warehouse' )
+    conn.exec( "SELECT * FROM fact_intervention" ) do |result|
+      result.each do |row|
+        puts row.values
+      end
+    end
+  end
 end
