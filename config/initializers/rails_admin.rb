@@ -1,4 +1,9 @@
 RailsAdmin.config do |config|
+  #== Devise ==
+  config.authenticate_with do
+    warden.authenticate! scope: :user
+  end
+  config.current_user_method(&:current_user)
   config.authorize_with do
     redirect_to main_app.root_path unless warden.user.admin == 1
   end
@@ -7,11 +12,6 @@ RailsAdmin.config do |config|
     'Google Maps' => '/maps/index',
      'Pollygo' => '/polly/index'}
   ### Popular gems integration
-  #== Devise ==
-  config.authenticate_with do
-    warden.authenticate! scope: :user
-  end
-  # config.current_user_method(&:current_user)
 
   ## == CancanCan ==
   # config.authorize_with :cancancan
