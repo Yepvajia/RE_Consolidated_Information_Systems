@@ -59,7 +59,7 @@ Run:
 
 ```
 query{
-  factinterventiontype(employeeId:){
+  factinterventiontype(employeeId: 5){
     employeeId
     buildingId
     buildingintervention{
