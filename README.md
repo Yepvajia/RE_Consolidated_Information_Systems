@@ -16,7 +16,7 @@ Gem added for Graphql:
 
 Run bundle install in the ubuntu terminal now you are ready to test the queries:
     
-Go to this url: http://localhost:3000/graphiql
+Go to this url: https://zacom.za.com/graphiql
 
 To get the address of the building, the beginning and the end of the intervention:
 
