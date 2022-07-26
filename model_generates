@@ -17,6 +17,11 @@ rails generate model Column battery_id:integer building_type floors:integer stat
  
 rails generate model Elevator column_id:integer serial_number model building_type status comm_date:date inspec_date:date certificate:integer information:text notes:text
 
+
+
+rails generate scaffold Intervention author:integer customer_id:integer building_id:integer battery_id:integer column_id:integer elevator_id:integer employee_id:integer start_date:datetime end_date:datetime result report:text status
+
+
 ### DO NOT USE UNLESS NEEDED!
 ## PROBABLY WONT BE NEEDED, BUT IN CASE THESE ARE, THEY ARE WAITING HERE
 

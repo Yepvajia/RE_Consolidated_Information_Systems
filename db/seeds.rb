@@ -65,7 +65,7 @@ User.create!([{
 }])
 
 
-100.times do
+30.times do
   User.create!(
     email: Faker::Internet.unique.email,
     password: "juicejuice")
@@ -148,7 +148,7 @@ Employee.create!([{
 Quote.destroy_all
 Quote.connection.execute('ALTER TABLE quotes AUTO_INCREMENT = 1')
 
-80.times do
+40.times do
   Quote.create!(
     building_type: type(),
     price: elevatorsModel(),
@@ -168,7 +168,7 @@ end
 Lead.destroy_all
 Lead.connection.execute('ALTER TABLE leads AUTO_INCREMENT = 1')
 departments = ["Support", "HR", "Juice", "Elevator Heads", "IT"]
-80.times do
+40.times do
   Lead.create!(
     name: Faker::Name.unique.name.gsub(/\'/, ''),
     company_name: Faker::Company.unique.name.gsub(/\'/, ''),
@@ -190,7 +190,7 @@ data = JSON.parse(file)
 # puts data
 
 
-80.times do |i|
+40.times do |i|
   address = data['addresses'][i]
   Address.create!(
     address_type: data['address_type'][rand(4)],
@@ -211,13 +211,13 @@ Customer.destroy_all
 Customer.connection.execute('ALTER TABLE customers AUTO_INCREMENT = 1')
 
 
-Address.count.times do |i|
+(Address.count/2).times do |i|
   user = User.find(i+11)
   Customer.create!(
     user_id: i + 11,
     creation_date: Faker::Date.between(from: 3.years.ago, to: Date.today),
     company_name: Faker::Company.unique.name.gsub(/\'/, ''),
-    address_id: i + 1,
+    address_id: ((i+1.0)/2.0).ceil,
     name: Faker::Name.unique.name.gsub(/\'/, ''),
     phone: Faker::PhoneNumber.unique.cell_phone,
     email: user.email,
@@ -233,9 +233,9 @@ Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
 
 
 Address.count.times do |i|
-  customer = Customer.find(i+1)
+  customer = Customer.find(((i+1.0)/2.0).ceil)
   Building.create!(
-    customer_id: i + 1,
+    customer_id: ((i+1.0)/2.0).ceil,
     address_id: i + 1,
     name: customer.name.gsub(/\'/, ''),
     email: customer.email,
@@ -264,9 +264,13 @@ Battery.destroy_all
 Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
 
-200.times do
+120.times do |i|
+  b_id = i + 1
+  if b_id > Building.count
+    b_id = rand(Building.count)+1
+  end
   Battery.create!(
-    building_id: buildingID(),
+    building_id: b_id,
     building_type: type(),
     status: 'active',
     employee_id: employeeId(),
@@ -282,9 +286,13 @@ end
 Column.destroy_all
 Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
-250.times do
+240.times do |i|
+  bat_id = i + 1
+  if bat_id > Battery.count
+    bat_id = rand(Battery.count)+1
+  end
   Column.create!(
-    battery_id: batteryID(),
+    battery_id: bat_id,
     building_type: type(),
     floors: floors(),
     status: 'active',
@@ -298,9 +306,13 @@ Elevator.destroy_all
 Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
 
-300.times do
+300.times do |i|
+  col_id = i + 1
+  if col_id > Column.count
+    col_id = rand(Column.count)+1
+  end
   Elevator.create!(
-    column_id: columnID() ,
+    column_id: col_id,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
     model: elevatorsModel(),
     building_type: type(),
@@ -311,5 +323,21 @@ Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
     information: Faker::Lorem.sentence(word_count: 3),
     notes: Faker::Lorem.sentence(word_count: 5)
   )
+end
 
+Intervention.destroy_all
+Intervention.connection.execute('ALTER TABLE interventions AUTO_INCREMENT = 1')
+
+10.times do |i|
+  Intervention.create!(
+    author_id: i + 1,
+    customer_id: i + 1,
+    building_id: i + 1,
+    battery_id: i + 1,
+    column_id: i + 1,
+    elevator_id: i + 1,
+    employee_id: i + 1,
+    start_date: Date.today,
+    end_date: Date.today
+  )
 end

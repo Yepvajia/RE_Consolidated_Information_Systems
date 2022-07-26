@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :interventions
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql#execute"
   end
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :quotes
 end
 Rails.application.routes.draw do
+  resources :interventions
   get 'maps/index'
   resources :quotes
   resources :employees
