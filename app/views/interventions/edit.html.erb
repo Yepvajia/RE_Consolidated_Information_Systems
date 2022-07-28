@@ -1,6 +1,16 @@
-<h1>Editing Intervention</h1>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <h1>Editing Intervention</h1>
+</div>
 
 <%= render 'form', intervention: @intervention %>
 
-<%= link_to 'Show', @intervention %> |
-<%= link_to 'Back', interventions_path %>
+<div class="container">
+  <%= link_to 'Show', @intervention, {:class => "btn btn-secondary", :style=>'color:#FFFFFF;'} %> |
+  <%= link_to 'Back', interventions_path, {:class => "btn btn-secondary", :style=>'color:#FFFFFF;'} %>
+  <br>
+  <br>
+</div>

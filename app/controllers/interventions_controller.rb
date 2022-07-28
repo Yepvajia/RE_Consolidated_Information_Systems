@@ -3,6 +3,13 @@ class InterventionsController < ApplicationController
 
   # GET /interventions or /interventions.json
   def index
+    if current_user
+      if current_user.admin != 1
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
     @interventions = Intervention.all
   end
 
@@ -21,7 +28,15 @@ class InterventionsController < ApplicationController
 
   # POST /interventions or /interventions.json
   def create
+    # w(params.permit(:author, :customer_id, :building_id, :battery_id, :column_id, :elevator_id , :employee_id , :start_date, :end_date, :result, :report, :status))
     @intervention = Intervention.new(intervention_params)
+    @intervention.author_id = current_user.id
+    @intervention.customer_id = @intervention.customer_id.to_i
+    @intervention.building_id = @intervention.building_id.to_i
+    @intervention.column_id = @intervention.column_id.to_i
+    @intervention.elevator_id = @intervention.elevator_id.to_i
+    @intervention.employee_id = @intervention.employee_id.to_i
+
 
     respond_to do |format|
       if @intervention.save
@@ -65,6 +80,6 @@ class InterventionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def intervention_params
-      params.require(:intervention).permit(:author, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :start_date, :end_date, :result, :report, :status)
+      params.require(:intervention).permit(:author_id, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :start_date, :end_date, :result, :report, :status)
     end
 end

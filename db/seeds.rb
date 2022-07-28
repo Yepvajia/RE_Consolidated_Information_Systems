@@ -231,11 +231,13 @@ end
 Building.destroy_all
 Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
 
-
+c_arr = Array(1..Customer.count).shuffle
+c_arr += c_arr
 Address.count.times do |i|
-  customer = Customer.find(((i+1.0)/2.0).ceil)
+  c_id = c_arr.pop()
+  customer = Customer.find(c_id)
   Building.create!(
-    customer_id: ((i+1.0)/2.0).ceil,
+    customer_id: (c_id).ceil,
     address_id: i + 1,
     name: customer.name.gsub(/\'/, ''),
     email: customer.email,
@@ -263,12 +265,10 @@ end
 Battery.destroy_all
 Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
-
+b_arr = Array(1..Building.count).shuffle
+b_arr += b_arr + b_arr
 120.times do |i|
-  b_id = i + 1
-  if b_id > Building.count
-    b_id = rand(Building.count)+1
-  end
+  b_id = b_arr.pop()
   Battery.create!(
     building_id: b_id,
     building_type: type(),
@@ -286,11 +286,10 @@ end
 Column.destroy_all
 Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
+bat_arr = Array(1..Battery.count).shuffle
+bat_arr += bat_arr
 240.times do |i|
-  bat_id = i + 1
-  if bat_id > Battery.count
-    bat_id = rand(Battery.count)+1
-  end
+  bat_id = bat_arr.pop()
   Column.create!(
     battery_id: bat_id,
     building_type: type(),
@@ -305,12 +304,10 @@ end
 Elevator.destroy_all
 Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
-
-300.times do |i|
-  col_id = i + 1
-  if col_id > Column.count
-    col_id = rand(Column.count)+1
-  end
+col_arr = Array(1..Column.count).shuffle
+col_arr += col_arr
+480.times do |i|
+  col_id = col_arr.pop()
   Elevator.create!(
     column_id: col_id,
     serial_number: Faker::IDNumber.spanish_foreign_citizen_number,
