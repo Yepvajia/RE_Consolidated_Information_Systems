@@ -231,8 +231,9 @@ end
 Building.destroy_all
 Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
 
-c_arr = Array(1..Customer.count).shuffle
+c_arr = Array(1..Customer.count)
 c_arr += c_arr
+c_arr.shuffle
 Address.count.times do |i|
   c_id = c_arr.pop()
   customer = Customer.find(c_id)
@@ -265,8 +266,9 @@ end
 Battery.destroy_all
 Battery.connection.execute('ALTER TABLE batteries AUTO_INCREMENT = 1')
 
-b_arr = Array(1..Building.count).shuffle
+b_arr = Array(1..Building.count)
 b_arr += b_arr + b_arr
+b_arr = b_arr.shuffle
 120.times do |i|
   b_id = b_arr.pop()
   Battery.create!(
@@ -286,8 +288,9 @@ end
 Column.destroy_all
 Column.connection.execute('ALTER TABLE columns AUTO_INCREMENT = 1')
 
-bat_arr = Array(1..Battery.count).shuffle
+bat_arr = Array(1..Battery.count)
 bat_arr += bat_arr
+bat_arr = bat_arr.shuffle
 240.times do |i|
   bat_id = bat_arr.pop()
   Column.create!(
@@ -304,8 +307,9 @@ end
 Elevator.destroy_all
 Elevator.connection.execute('ALTER TABLE elevators AUTO_INCREMENT = 1')
 
-col_arr = Array(1..Column.count).shuffle
+col_arr = Array(1..Column.count)
 col_arr += col_arr
+col_arr = col_arr.shuffle
 480.times do |i|
   col_id = col_arr.pop()
   Elevator.create!(
@@ -334,7 +338,6 @@ Intervention.connection.execute('ALTER TABLE interventions AUTO_INCREMENT = 1')
     column_id: i + 1,
     elevator_id: i + 1,
     employee_id: i + 1,
-    start_date: Date.today,
-    end_date: Date.today
+    report: Faker::Lorem.paragraph
   )
 end

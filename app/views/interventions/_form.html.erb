@@ -12,37 +12,37 @@
       </div>
     <% end %>
   
-    <div id="customer_id" class="field row db-id">
+    <div id="customer" class="field row db-id" data-select="building">
       <div class="col"><%= form.label :customer_id %></div>
-      <div class="col"><%= form.select(:customer_id, [["--NONE--", 0]] + Customer.all.map{|customer| ["Customer ID: #{customer.id}", customer.id]}, {}, { :style => "padding: 0px 4 px; width:185px"}) %></div>
+      <div class="col"><%= form.select(:customer_id, [["--NONE--", 0]] + Customer.all.map{|customer| ["#{customer.name}, ID: #{customer.id}", customer.id]}, {}, { :style => "padding: 10px 4px; width:250px"}) %></div>
     </div>
   
-    <div id="building_id" class="field row db-id">
+    <div id="building" class="field row db-id" data-select="battery">
       <div class="col"><%= form.label :building_id %></div>
-      <div class="col"><%= form.select(:building_id, [["--NONE--", 0]], {}, { :style => "padding: 0px 4 px; width:185px"}) %></div>
+      <div class="col"><%= form.select(:building_id, [["--NONE--", 0]], {}, { :style => "padding: 10px 4px; width:250px"}) %></div>
     </div>
   
-    <div id="battery_id" class="field row db-id">
+    <div id="battery" class="field row db-id" data-select="column">
       <div class="col"><%= form.label :battery_id %></div>
-      <div class="col"><%= form.select(:battery_id, [["--NONE--", 0]], {}, { :style => "padding: 0px 4 px; width:185px"}) %></div>
+      <div class="col"><%= form.select(:battery_id, [["--NONE--", 0]], {}, { :style => "padding: 10px 4px; width:250px"}) %></div>
     </div>
   
-    <div id="column_id" class="field row db-id">
+    <div id="column" class="field row db-id" data-select="elevator">
       <div class="col"><%= form.label :column_id %></div>
-      <div class="col"><%= form.select(:column_id, [["--NONE--", 0]], {}, { :style => "padding: 0px 4 px; width:185px"}) %></div>
+      <div class="col"><%= form.select(:column_id, [["--NONE--", 0]], {}, { :style => "padding: 10px 4px; width:250px"}) %></div>
     </div>
   
-    <div id="elevator_id" class="field row db-id">
+    <div id="elevator" class="field row db-id" data-select="done">
       <div class="col"><%= form.label :elevator_id %></div>
-      <div class="col"><%= form.select(:elevator_id, [["--NONE--", 0]], {}, { :style => "padding: 0px 4 px; width:185px"}) %></div>
+      <div class="col"><%= form.select(:elevator_id, [["--NONE--", 0]], {}, { :style => "padding: 10px 4px; width:250px"}) %></div>
     </div>
   
-    <div id="employee_id" class="field row db-id">
+    <div id="employee" class="field row">
       <div class="col"><%= form.label :employee_id %></div>
-      <div class="col"><%= form.select(:employee_id, [["--NONE--", 0]], {}, { :style => "padding: 0px 4 px; width:185px"}) %></div>
+      <div class="col"><%= form.select(:employee_id, [["--NONE--", 0]] + Employee.all.map{|employee| ["#{employee.first_name}, ID: #{employee.id} ", employee.id]}, {}, { :style => "padding: 10px 4px; width:250px"}) %></div>
     </div>
   
-    <div id="report" class="field row db-id">
+    <div id="report" class="field row">
       <div class="col"><%= form.label :report, "Desciption" %></div>
       <div class="col"><%= form.text_area :report, cols: "50", rows: "3", style: "resize: none;" %></div>
     </div>
@@ -51,7 +51,7 @@
       <div class="col"><%= form.submit class:"btn btn-primary", style: "width:200px"%></div>
     </div>
 
-    <button id="hello" type="button" class="btn btn-primary">hello</button>
+    <%# <button id="hello" type="button" class="btn btn-primary">hello</button> %>
   <% end %>
 </div>
 <%= javascript_include_tag "intervention", "data-turbolinks-track" => true  %>
