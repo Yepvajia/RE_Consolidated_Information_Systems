@@ -338,7 +338,6 @@ Intervention.connection.execute('ALTER TABLE interventions AUTO_INCREMENT = 1')
     column_id: i + 1,
     elevator_id: i + 1,
     employee_id: i + 1,
-    start_date: Date.today,
-    end_date: Date.today
+    report: Faker::Lorem.paragraph
   )
 end

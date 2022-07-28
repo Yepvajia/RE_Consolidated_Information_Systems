@@ -1,9 +1,11 @@
-<div class="container">
+<div class="container jumbotron">
+  <br>
+  <br>
   <p id="notice"><%= notice %></p>
 
   <p>
     <strong>Author:</strong>
-    <%= @intervention.author %>
+    <%= @intervention.author_id %>
   </p>
 
   <p>
@@ -63,6 +65,4 @@
 
   <%= link_to 'Edit', edit_intervention_path(@intervention), {:class => "btn btn-secondary", :style=>'color:#FFFFFF;'} %> |
   <%= link_to 'Back', interventions_path, {:class => "btn btn-secondary", :style=>'color:#FFFFFF;'} %>
-  <br>
-  <br>
 </div>

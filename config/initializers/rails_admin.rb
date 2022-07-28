@@ -7,10 +7,13 @@ RailsAdmin.config do |config|
   config.authorize_with do
     redirect_to main_app.root_path unless warden.user.admin == 1
   end
-  config.navigation_static_label = "API"
+  config.navigation_static_label = "TOOLS"
   config.navigation_static_links={
     'Google Maps' => '/maps/index',
-     'Pollygo' => '/polly/index'}
+    'Pollygo' => '/polly/index',
+    'Intervention Ticket' => '/interventions'
+    }
+
   ### Popular gems integration
 
   ## == CancanCan ==

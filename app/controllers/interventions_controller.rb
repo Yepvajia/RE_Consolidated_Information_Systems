@@ -15,15 +15,36 @@ class InterventionsController < ApplicationController
 
   # GET /interventions/1 or /interventions/1.json
   def show
+    if current_user
+      if current_user.admin != 1
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /interventions/new
   def new
+    if current_user
+      if current_user.admin != 1
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
     @intervention = Intervention.new
   end
 
   # GET /interventions/1/edit
   def edit
+    if current_user
+      if current_user.admin != 1
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /interventions or /interventions.json

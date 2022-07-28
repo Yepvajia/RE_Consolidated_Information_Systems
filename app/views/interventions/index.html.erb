@@ -1,14 +1,14 @@
-<div class="container">
   <br>
   <br>
   <br>
   <br> 
-  <p id="notice"><%= notice %></p>
+  <div class = "container">
+    <p id="notice"><%= notice %></p>
+    <h1>Interventions</h1>
+  </div>
   
-  <h1>Interventions</h1>
-  
-  <table>
-    <thead>
+  <table class="container table table-hover table-bordered table-striped">
+    <thead class ="thead-dark">
       <tr>
         <th>Author</th>
         <th>Customer</th>
@@ -29,7 +29,7 @@
     <tbody>
       <% @interventions.each do |intervention| %>
         <tr>
-          <td><%= intervention.author %></td>
+          <td><%= intervention.author_id %></td>
           <td><%= intervention.customer_id %></td>
           <td><%= intervention.building_id %></td>
           <td><%= intervention.battery_id %></td>
@@ -50,8 +50,7 @@
   </table>
   
   <br>
-  
-  <%= link_to 'New Intervention', new_intervention_path, {:class => "btn btn-primary", :style=>'color:#FFFFFF;'} %>
+  <div class = "container">
+    <%= link_to 'New Intervention', new_intervention_path, {:class => "btn btn-primary", :style=>'color:#FFFFFF;'} %>
+  </div>
   <br>
-  <br>
-</div>
