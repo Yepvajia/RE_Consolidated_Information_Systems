@@ -1,13 +1,16 @@
 
-$("#hello").click(function(ev){
+$("#hello").click(async function(ev){
   ev.preventDefault();
-  // var juice
-  fetch("https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/elevator/"+21)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-  // console.log(juice);
+  const juice = await getData("https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/elevator/"+21)
+  console.log(juice[1]);
 });
 
+async function getData(url){
+  const res = await fetch(url);
+  return res.json();
+}
+
 $(".db-id").change(function() {
-  console.log("JUICE");
+  select = $(this).data("select")
+  if (select) console.log(select);
 })
