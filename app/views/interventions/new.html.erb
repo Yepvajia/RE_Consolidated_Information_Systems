@@ -1,5 +1,13 @@
-<h1>New Intervention</h1>
-
-<%= render 'form', intervention: @intervention %>
-
-<%= link_to 'Back', interventions_path %>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>  
+  <h1>Intervention Ticket</h1>
+</div>
+  <%= render 'form', intervention: @intervention %>
+<div class="container">
+  <%= link_to 'Back', interventions_path, {:class => "btn btn-secondary", :style=>'color:#FFFFFF;'} %>
+  <br>
+  <br>
+</div>
