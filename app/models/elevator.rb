@@ -4,7 +4,7 @@ require 'slack-notifier'
 class Elevator < ApplicationRecord
   include ActiveModel::Dirty
   belongs_to :column, class_name: "Column", foreign_key: "column_id"
-  has_one :intervention, class_name: "Intervention", foreign_key: "employee_id"
+  has_many :interventions, class_name: "Intervention", foreign_key: "employee_id"
   before_update :sendSms, :howl 
 
 

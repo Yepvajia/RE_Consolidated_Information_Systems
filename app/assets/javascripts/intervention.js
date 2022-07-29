@@ -1,33 +1,39 @@
 var URL = "https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/"
 var NONE = `<option value="0">--NONE--</option>`
-var IDS = $(".db-id").map(function() {return $(this).data("select"); }).get();
+var DATA_SELECT = $(".db-id").map(function() {return $(this).data("select"); }).get();
 
+// Hides all dynamic dropdowns when page loads
 $('document').ready(function() {
   hideRest('building', 0);
 });
 
+// Returns json from api call........WITH NO AJAX!!!
 async function getData(url){
   let res = await fetch(url);
   return res.json();
 }
 
+// Returns string with first letter set to uppercase
 function upCaseFirstLetter(word) {
   return word[0].toUpperCase() + word.substring(1)
 }
 
+// Hides every dropdown after the current one
 function hideRest(select) {
-  for (let i = IDS.indexOf(select); i < IDS.length; i++) {
-    $("#"+IDS[i]).hide()
+  for (let i = DATA_SELECT.indexOf(select); i < DATA_SELECT.length; i++) {
+    $("#"+DATA_SELECT[i]).hide()
   }
 }
 
+// Empties every dropdown after the current one and adds the "--NONE--" option
 function purgeRest(select) {
-  for (let i = IDS.indexOf(select); i < IDS.length; i++) {
-    $("#" + IDS[i] + " select option").remove();
-    $("#" + IDS[i] + " select").append(NONE)
+  for (let i = DATA_SELECT.indexOf(select); i < DATA_SELECT.length; i++) {
+    $("#" + DATA_SELECT[i] + " select option").remove();
+    $("#" + DATA_SELECT[i] + " select").append(NONE)
   }
 }
 
+// Calls URL api combined with the specific data-select to return array of ids
 async function updateSelect(select, id) {
   let arrID = await getData(URL + select + "/" + id);
   for (let i = 0; i < arrID.length; i++) {
@@ -37,6 +43,7 @@ async function updateSelect(select, id) {
   }
 }
 
+// Checks whenever a element with the class "db-id" changes and updates the next entry to have all the ids from the selection
 $(".db-id").change(function() {
   select = $(this).data("select");
   id = $(this).find(":selected").val();
@@ -50,11 +57,3 @@ $(".db-id").change(function() {
     purgeRest(select)
   }
 });
-
-// $("#hello").click(async function(ev){
-//   // ev.preventDefault();
-//   // let juice = await getData("https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/elevator/"+21)
-//   // console.log(juice[1]);
-//   console.log(IDS);
-//   console.log(ELEMENTS);
-// });

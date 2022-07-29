@@ -1,3 +1,5 @@
+require 'rest-client'
+require "json"
 class InterventionsController < ApplicationController
   before_action :set_intervention, only: %i[ show edit update destroy ]
 
@@ -49,11 +51,11 @@ class InterventionsController < ApplicationController
 
   # POST /interventions or /interventions.json
   def create
-    # w(params.permit(:author, :customer_id, :building_id, :battery_id, :column_id, :elevator_id , :employee_id , :start_date, :end_date, :result, :report, :status))
     @intervention = Intervention.new(intervention_params)
     @intervention.author_id = current_user.id
     @intervention.customer_id = @intervention.customer_id.to_i
     @intervention.building_id = @intervention.building_id.to_i
+    @intervention.battery_id = @intervention.battery_id.to_i
     @intervention.column_id = @intervention.column_id.to_i
     @intervention.elevator_id = @intervention.elevator_id.to_i
     @intervention.employee_id = @intervention.employee_id.to_i
@@ -61,6 +63,32 @@ class InterventionsController < ApplicationController
 
     respond_to do |format|
       if @intervention.save
+        data = {
+          email: @intervention.author.email, 
+          priority: 4, 
+          status: 3,
+          type: "Question",
+          subject: "Ticket From #{@intervention.author.first_name}",
+          description: "<h2>Here is all the info from the ticket:</h2><br>
+          <b>Requester:</b> #{@intervention.author.first_name} #{@intervention.author.last_name}<br>
+          <b>Customer:</b> #{@intervention.customer.company_name}<br>
+          <b>Building ID:</b> #{@intervention.building_id}<br>
+          <b>Battery ID:</b> #{@intervention.battery_id}<br>
+          <b>Column ID:</b> #{@intervention.column_id}<br>
+          <b>Elevator ID:</b> #{@intervention.elevator_id}<br>
+          <b>Employee ID:</b> #{@intervention.employee_id}<br>
+          <b>Description:</b> #{@intervention.report}"
+        }.to_json
+        request  = RestClient::Request.execute(
+          method: :post, 
+          url: 'https://rocketelevator-support.freshdesk.com/api/v2/tickets',
+          user: ENV['FRESHDESK_KEY'],
+          password: "x",
+          headers: {
+            content_type: "application/json"
+          },
+          payload: data
+        )
         format.html { redirect_to intervention_url(@intervention), notice: "Intervention was successfully created." }
         format.json { render :show, status: :created, location: @intervention }
       else
