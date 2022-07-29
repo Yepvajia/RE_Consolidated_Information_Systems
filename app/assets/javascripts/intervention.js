@@ -1,20 +1,10 @@
 var URL = "https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/"
 var NONE = `<option value="0">--NONE--</option>`
-var IDS = $(".db-id").map(function() {return $(this).attr("id"); }).get().slice(1);
-var ELEMENTS = IDS.concat(['employee', 'report', 'sub-button'])
+var IDS = $(".db-id").map(function() {return $(this).data("select"); }).get();
 
 $('document').ready(function() {
   hideRest('building', 0);
 });
-
-// $("#hello").click(async function(ev){
-//   // ev.preventDefault();
-//   // let juice = await getData("https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/elevator/"+21)
-//   // console.log(juice[1]);
-//   console.log(IDS);
-//   console.log(ELEMENTS);
-// });
-
 
 async function getData(url){
   let res = await fetch(url);
@@ -26,8 +16,8 @@ function upCaseFirstLetter(word) {
 }
 
 function hideRest(select) {
-  for (let i = ELEMENTS.indexOf(select); i < ELEMENTS.length; i++) {
-    $("#"+ELEMENTS[i]).hide()
+  for (let i = IDS.indexOf(select); i < IDS.length; i++) {
+    $("#"+IDS[i]).hide()
   }
 }
 
@@ -51,23 +41,20 @@ $(".db-id").change(function() {
   select = $(this).data("select");
   id = $(this).find(":selected").val();
   if (id != 0) {
-    if (select == "done") {
-      hideRest("employee")
-      for (let i = 0; i < ELEMENTS.length; i++) {
-        $("#"+ELEMENTS[i]).show(500)
-      }
-    } else {
-      hideRest(select)
-      purgeRest(select)
-      $('#'+select).show(500)
-    }
+    hideRest(select)
+    purgeRest(select)
+    $('#'+select).show(700)
     updateSelect(select, id)
   } else {
-      if (select == "done") {
-        hideRest("employee")
-      } else {
-        hideRest(select)
-        purgeRest(select)
-      }
+    hideRest(select)
+    purgeRest(select)
   }
 });
+
+// $("#hello").click(async function(ev){
+//   // ev.preventDefault();
+//   // let juice = await getData("https://cors-proxy-yepper.herokuapp.com/https://roc-yepper.herokuapp.com/api/elevator/"+21)
+//   // console.log(juice[1]);
+//   console.log(IDS);
+//   console.log(ELEMENTS);
+// });
