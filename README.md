@@ -1,70 +1,30 @@
-# HI WELCOME TO ODYSSEY WEEK 7 : Offer Services on the Internet
+# CodeBoxx Week 10: Rocket Elevators Foundation
 
-## THIS IS THE README FOR THE GRAPHQL 
+## YOU ARE AN ALCOHOLIC, THAT'S WHAT THE INTERVENTION IS FOR
 
-System Requirements:
-VSCODE
-Ruby On Rails:
-Ruby: ruby 2.7
-Rails: Rails 5.2.8
+### System Requirements:
+Ruby: `ruby 2.7`
 
-Gem added for Graphql:
+Rails: `Rails 5.2.8`
 
-`-graphql`
 
-`-graphql-rails`
-
-Run bundle install in the ubuntu terminal now you are ready to test the queries:
+### Links:
+#### !! YOU MUST BE SIGNED IN AS AN ADMIN TO USE THESE FEATURES !!
+To access the new intervention form **click the final link on admin panel** or
     
-Go to this url: https://zacom.za.com/graphiql
+#### Go to this url: https://zacom.za.com/interventions/new
 
-To get the address of the building, the beginning and the end of the intervention:
+#### REPO FOR REST API: https://github.com/Yepvajia/Intervention_API
 
-Run : 
+### Path to new code:
+`./app/views/interventions/_form.html.erb`
 
-```
-query{
-  buildingtype{
-    addressId
-    interventionForBuilding {
-      startDate
-      endDate
-    }
-  }
-}
-```
+`./app/assets/javascripts/intervention.js`
 
-To get the customer information and the list of interventions:
+`./app/controllers/interventions_controller.rb`
 
-Run:
+`./app/models/intervention.rb`
 
-```
-query{
-  customertype{
-    addressId
-    interventionelevator {
-      buildingId
-    }
-    interventionelevator2building {
-      id
-      addressId
-    }
-  }
-}
-```
+`./db/migrate/20220726215002_create_interventions.rb`
 
-To get all interventions carried out by a specified employee with the buildings associated with these interventions:
-
-Run:
-
-```
-query{
-  factinterventiontype(employeeId: 5){
-    employeeId
-    buildingId
-    buildingintervention{
-      addressId
-    }
-  }
-}
-```
+`./db/seeds.rb`
