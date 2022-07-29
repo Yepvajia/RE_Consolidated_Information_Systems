@@ -2,6 +2,8 @@
 
 ## YOU ARE AN ALCOHOLIC, THAT'S WHAT THE INTERVENTION IS FOR
 
+<img src="/app/assets/images/R2.png" width="500">
+
 ### System Requirements:
 Ruby: `ruby 2.7`
 
