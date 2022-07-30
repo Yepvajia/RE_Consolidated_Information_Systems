@@ -5,6 +5,7 @@ var DATA_SELECT = $(".db-id").map(function() {return $(this).data("select"); }).
 // Hides all dynamic dropdowns when page loads
 $('document').ready(function() {
   hideRest('building', 0);
+  let preload = getData(URL + "building/" + 1)
 });
 
 // Returns json from api call........WITH NO AJAX!!!
