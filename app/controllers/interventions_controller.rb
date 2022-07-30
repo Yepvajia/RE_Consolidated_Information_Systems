@@ -67,7 +67,7 @@ class InterventionsController < ApplicationController
           email: @intervention.author.email, 
           priority: 4, 
           status: 3,
-          type: "Question",
+          type: "Incident",
           subject: "Ticket From #{@intervention.author.first_name}",
           description: "<h2>Here is all the info from the ticket:</h2><br>
           <b>Requester:</b> #{@intervention.author.first_name} #{@intervention.author.last_name}<br>
