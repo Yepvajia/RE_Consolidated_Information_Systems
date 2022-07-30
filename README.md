@@ -5,7 +5,7 @@
 <img src="/app/assets/images/R2.png" width="1000">
 
 ### System Requirements:
-Ruby: `ruby 2.7`
+Ruby: `ruby 2.7.6`
 
 Rails: `Rails 5.2.8`
 
@@ -19,14 +19,14 @@ To access the new intervention form **click the final link on admin panel** or
 #### REPO FOR REST API: https://github.com/Yepvajia/Intervention_API
 
 ### Path to new code:
-`./app/views/interventions/_form.html.erb`
+`/app/views/interventions/_form.html.erb`
 
-`./app/assets/javascripts/intervention.js`
+`/app/assets/javascripts/intervention.js`
 
-`./app/controllers/interventions_controller.rb`
+`/app/controllers/interventions_controller.rb`
 
-`./app/models/intervention.rb`
+`/app/models/intervention.rb`
 
-`./db/migrate/20220726215002_create_interventions.rb`
+`/db/migrate/20220726215002_create_interventions.rb`
 
-`./db/seeds.rb`
+`/db/seeds.rb`
