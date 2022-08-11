@@ -62,6 +62,11 @@ User.create!([{
   admin: 1,
   email: "eileen.ai@codeboxx.biz",
   password: "juicejuice"
+},
+{
+  admin: 0,
+  email: "customer@bizines.wow",
+  password: "juicejuice"
 }])
 
 
@@ -143,6 +148,13 @@ Employee.create!([{
   title: "They really are.",
   email: "eileen.ai@codeboxx.biz",
   user_id: 10
+},
+{
+  first_name: "Customer",
+  last_name: "Person",
+  title: "Just a customer, not a big deal",
+  email: "customer@bizines.wow",
+  user_id: 11
 }])
 
 Quote.destroy_all
@@ -233,7 +245,7 @@ Building.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
 
 c_arr = Array(1..Customer.count)
 c_arr += c_arr
-c_arr.shuffle
+c_arr = c_arr.shuffle
 Address.count.times do |i|
   c_id = c_arr.pop()
   customer = Customer.find(c_id)
