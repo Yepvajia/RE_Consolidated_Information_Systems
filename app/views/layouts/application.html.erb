@@ -19,6 +19,15 @@
     </style>
     <%= favicon_link_tag asset_path('R4.png') %>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9BMCXWDPLJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9BMCXWDPLJ');
+  </script>
   <body class="smoothscroll enable-animation">
     <div id="wrapper">
       <%#need for devise%>
