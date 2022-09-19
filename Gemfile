@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.6'
+gem 'newrelic_rpm'
 gem "figaro"
 gem 'gmaps4rails'
 gem 'sendgrid-ruby'
